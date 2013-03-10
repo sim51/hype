@@ -6,7 +6,7 @@ var playurl = 'http://localhost:9000';
 /* Services */
 angular.module('github', [ ])
     /* Github gists securesocial*/
-    .factory('Gist', function($http, $location, $rootScope){
+    .factory('Github', function($http, $location, $rootScope){
         return {
             list:function(owner){
                 var url = githuburl + '/user/' + user + '/gists?callback=JSON_CALLBACK';
@@ -81,15 +81,14 @@ angular.module('github', [ ])
 
 angular.module('play', [ ])
     /* Github gists securesocial*/
-    .factory('play', function($http, $location, $rootScope){
+    .factory('Play', function($http, $location, $rootScope){
         return {
-            messages:function(owner){
-                var url = playurl + '/messages?callback=JSON_CALLBACK';
-                return $http.jsonp( url )
+            messages:function(){
+                var url = playurl + '/api/messages?callback=JSON_CALLBACK';
+                return $http.get( url )
                     .then(function (response){
-                        if( response.status == 200 && response.data.meta.status == 200){
-                            //TODO
-                            return null;
+                        if( response.status == 200 ){
+                            return response.data;
                         }else{
                         	$rootScope.error = "Error when retriving I18N messages.";
                             $location.path('/error');

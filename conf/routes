@@ -5,7 +5,7 @@
 # APPLICATION ROUTES
 # ~~~~~~~~~~~~~~~~~~~~~
 GET     /                           controllers.Application.index
-GET     /api/i18n                   controllers.Application.messages
+GET     /api/messages               controllers.Application.messages
 
 # SECURE SOCIAL ROUTES
 # ~~~~~~~~~~~~~~~~~~~~~
