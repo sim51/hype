@@ -1,0 +1,4 @@
+page.home=Accueil
+page.about=A propos
+page.contact=Contact
+page.login=S'authentifier

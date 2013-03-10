@@ -16,7 +16,7 @@ import securesocial.controllers.TemplatesPlugin
  */
 class SecureSocialViews(application: Application) extends TemplatesPlugin {
   override def getLoginPage[A](implicit request: Request[A], form: Form[(String, String)], msg: Option[String] = None): Html = {
-    views.html.authentification.login(form, msg, request.acceptLanguages.map(_.code).mkString(", "))
+    views.html.authentification.login(form, msg)
   }
 
   override def getSignUpPage[A](implicit request: Request[A], form: Form[RegistrationInfo], token: String): Html = {
