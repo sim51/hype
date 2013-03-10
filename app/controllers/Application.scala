@@ -3,7 +3,7 @@ package controllers
 import play.api.mvc._
 import play.api.mvc.Cookie
 import play.api.Play.current
-import play.api.i18n.Messages
+import play.api.i18n.{Lang, Messages}
 import play.api.libs.json.Json
 import scala.Some
 import play.api.Logger
@@ -44,6 +44,12 @@ object Application extends Controller with securesocial.core.SecureSocial {
   def messages = Action { implicit request =>
     val i18n:Map[String, Map[String, String]] = Messages.messages
     Logger.debug("Language is " + lang.code)
-    Ok(Json.toJson(i18n.get(lang.code)))
+    if (i18n.get(lang.code).isEmpty){
+      val defaultLang :Lang = new Lang("fr")
+      Ok(Json.toJson(i18n.get(defaultLang.code)))
+    }
+    else{
+      Ok(Json.toJson(i18n.get(lang.code)))
+    }
   }
 }

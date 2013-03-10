@@ -26,7 +26,6 @@ app.run(function($rootScope, Play){
     })
     // i18n helper for templating
     $rootScope. i18n = function(key){
-        console.log("[I18N]: " + key + "=> " + $rootScope.messages[key])
         return  $rootScope.messages[key];
     }
 });

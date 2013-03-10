@@ -14,6 +14,10 @@ function HomeCtrl() {}
 /**
  *	Contact controller : do you want to contact me ?
  */
-function ContactCtrl() { }
+function ContactCtrl($scope) {
+    $scope.sendMail = function(){
+        alert("Email is sent")
+    }
+}
 
 
