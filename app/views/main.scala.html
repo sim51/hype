@@ -1,5 +1,4 @@
 @(title: String, lang:String, user:Option[securesocial.core.Identity])(content: Html)
-
 <!DOCTYPE html>
 <html lang="@lang" ng-app="hope">
     <head>
@@ -9,7 +8,7 @@
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
     </head>
-    <body>
+    <body data-offset="50" data-target=".subnav" data-spy="scroll">
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container-fluid">
@@ -22,13 +21,13 @@
                     <div class="nav-collapse collapse">
                         <ul class="nav">
                             <li>
-                                <a href="/">Home</a>
+                                <a href="/#home">Home</a>
                             </li>
                             <li>
-                                <a href="/">About</a>
+                                <a href="/#about">About</a>
                             </li>
                             <li>
-                                <a href="/">Contact</a>
+                                <a href="/#contact">Contact</a>
                             </li>
                         </ul>
                         <ul class="nav" id="user-menu">
@@ -41,8 +40,7 @@
                                             <b class="caret"></b>
                                         </a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="/user/myprofile">Mon compte</a></li>
-                                            <li><a href="/user/cartes">Mes cartes</a></li>
+                                            <li><a href="#/userprofile">@Messages("page.profile")</a></li>
                                             <li class="divider"></li>
                                             <li><a href="@securesocial.controllers.routes.LoginPage.logout()">Déconnexion</a></li>
                                         </ul>

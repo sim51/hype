@@ -1,4 +1,14 @@
+# PAGE TITLE
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 page.home=Home
 page.about=About
 page.contact=Contact us
 page.login=Login
+page.profile=My Page
+
+# SECURE SOCIAL
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+securesocial.login.title=Login
+securesocial.login.instructions=Use your github account to login. To do it, just click on the octocat !
+securesocial.login.accessDenied=You denied access to your account. Please grant it to log in.
+securesocial.login.errorLoggingIn=An error occurred while logging you in. Please try again.

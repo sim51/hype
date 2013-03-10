@@ -1,13 +1,10 @@
 @(loginForm: Form[(String,String)], errorMsg: Option[String] = None)(implicit request: RequestHeader, lang:Lang)
-
 @import helper._
 @import securesocial.views.html.provider
 @import securesocial.core.Registry
 @import securesocial.core.AuthenticationMethod._
 @import securesocial.core.providers.UsernamePasswordProvider.UsernamePassword
 @import securesocial.core.providers.utils.RoutesHelper
-
-
 @main(Messages("securesocial.login.title"), lang.code, None) {
     <div class="page-header">
         <h1>@Messages("securesocial.login.title")</h1>

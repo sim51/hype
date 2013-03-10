@@ -1,5 +1,5 @@
 @(user:Option[securesocial.core.Identity], message: String)(implicit request: RequestHeader, lang:Lang)
 
-@main("HOPE: HTML oriented presentation experience", lang.code, user) {
+@main("HOPE: HTML oriented presentation experience", lang.language, user) {
     <div ng-view></div>
 }

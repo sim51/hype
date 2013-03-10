@@ -1,4 +1,14 @@
+# PAGE TITLE
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 page.home=Accueil
 page.about=A propos
 page.contact=Contact
 page.login=S'authentifier
+page.profile=Ma Page
+
+# SECURE SOCIAL
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+securesocial.login.title=Veuillez vous authentifier
+securesocial.login.instructions=Pour cela, cliquer sur l'octocat !!
+securesocial.login.accessDenied=L'accès au site a été refusé par Githug. Veuillez vérifier vos préfénreces dans github pour résoudre le problème.
+securesocial.login.errorLoggingIn=Oups... une erreur est survenue. Pouvez-vous réessayer ?
