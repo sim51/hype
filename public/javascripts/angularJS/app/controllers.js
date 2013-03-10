@@ -1,26 +1,30 @@
 'use strict';
 
-/*
+/**
  *  Error.
  */
 function ErrorCtrl() {
 }
 
-
-/* 
- *	Search a repository (/search/:keyword).
+/**
+ *	Home controller : let's display some welcome text & explaination !
  */
-function RepositoryListCtrl($scope, $rootScope, $routeParams, $location, $github) {
-	var keyword = $routeParams.keyword  || '';
-	$rootScope.keyword = keyword;
-	if( keyword != ''){
-		$('#loading').show();
-		$github.search(keyword).then(function(response){
-			$scope.repositories = response;
-			$('#loading').hide();
-		});
-	}
-	$scope.orderProp = 'name';
+function HomeCtrl() {
+
+}
+
+/**
+ *	About controller : let's talk about the idea & technologie !
+ */
+function AboutCtrl() {
+
+}
+
+/**
+ *	Contact controller : do you want to contact me ?
+ */
+function ContactCtrl() {
+
 }
 
 

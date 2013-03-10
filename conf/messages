@@ -1,13 +1,24 @@
-# PAGE TITLE
+# PAGE HOME
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 page.home=Home
+page.home.title=Html oriented presentation experience
+page.home.text=<p>n'importe quoi !</p>
+
+# PAGE ABOUT
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 page.about=About
+
+# PAGE CONTACT
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 page.contact=Contact us
-page.login=Login
+
+# PAGE USER PROFILE
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 page.profile=My Page
 
 # SECURE SOCIAL
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+page.login=Login
 securesocial.login.title=Login
 securesocial.login.instructions=Use your github account to login. To do it, just click on the octocat !
 securesocial.login.accessDenied=You denied access to your account. Please grant it to log in.
