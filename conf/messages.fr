@@ -14,7 +14,15 @@ page.home.col2.text=<ul><li><a href="http://www.playframework.com" title="Play! 
 
 # PAGE CONTACT
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-page.contact=Contact us
+page.contact=Contact
+page.contact.text=<p>If you like this application or you have find a bug , want a new feature or anything else, you can fullfil this form to send me mail.<br/> Don't hesitate !</p>
+page.contact.title=Contact us !
+page.contact.author=Your fullname
+page.contact.author.placeholder=Benoit Simard
+page.contact.mail=Your email
+page.contact.mail.placeholder=bsimard@yopmail.com
+page.contact.message=Your message
+page.contact.send=Send !
 
 # PAGE USER PROFILE
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~

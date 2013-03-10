@@ -1,0 +1,34 @@
+<div class="page-header">
+    <h1>{{i18n('page.contact.title')}}</h1>
+</div>
+<div class="row">
+    <div class="span4">
+        <div ng-bind-html-unsafe="i18n('page.contact.text')"></div>
+    </div>
+    <div class="span8">
+        <form class="form-horizontal" enctype="application/x-www-form-urlencoded" accept-charset="utf-8" method="post" action="/contact"><input type="hidden" value="998f3c3931025e3cd81a9b50f94ee61aef985a41" name="authenticityToken">
+            <div class="control-group ">
+                <label for="author" class="control-label">{{i18n('page.contact.author')}}<span class="required">*</span></label>
+                <div class="controls">
+                    <input type="text" placeholder="{{i18n('page.contact.author.placeholder')}}" id="author" name="author">
+                </div>
+            </div>
+            <div class="control-group ">
+                <label for="email" class="control-label">{{i18n('page.contact.mail')}}<span class="required">*</span></label>
+                <div class="controls">
+                    <input type="text" placeholder="{{i18n('page.contact.mail.placeholder')}}" id="email" name="email">
+                </div>
+            </div>
+            <div class="control-group ">
+                <label for="message" class="control-label">{{i18n('page.contact.message')}}<span class="required">*</span></label>
+                <div class="controls">
+                    <textarea rows="3" class="xxlarge" id="message" name="message"></textarea>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">{{i18n('page.contact.send')}}</button>
+            </div>
+        </form>
+    </div>
+
+</div>
