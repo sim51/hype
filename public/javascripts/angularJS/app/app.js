@@ -18,10 +18,9 @@ app.config(function($routeProvider) {
 
 /* What we do when application start ? */
 app.run(function($rootScope, Play){
-    console.log("Application start")
+    console.log("[MAIN] Application start")
     // we load all i18n key/value from play!
     Play.messages().then(function(data){
-        console.log("data" + data)
         $rootScope.messages = data
     })
     // i18n helper for templating

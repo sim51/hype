@@ -14,9 +14,9 @@ function HomeCtrl() {}
 /**
  *	Contact controller : do you want to contact me ?
  */
-function ContactCtrl($scope) {
+function ContactCtrl($scope, Play) {
     $scope.sendMail = function(){
-        alert("Email is sent")
+         Play.sendMail($scope.name, $scope.email, $scope.message);
     }
 }
 

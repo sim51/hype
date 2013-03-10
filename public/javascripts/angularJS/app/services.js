@@ -94,6 +94,9 @@ angular.module('play', [ ])
                             $location.path('/error');
                         }
                     });
+            },
+            sendMail:function(name, email, message){
+                console.log("[Play|sendMail] Name:" + name + ", email:" + email +", message:" + message )
             }
         }
     });
