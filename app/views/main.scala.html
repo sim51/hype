@@ -1,0 +1,27 @@
+@(title: String, lang:String)(content: Html)
+
+<!DOCTYPE html>
+<html lang="@lang" ng-app="hope">
+    <head>
+        <title>@title</title>
+        <meta charset="utf-8">
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+    </head>
+    <body>
+        @content
+        <!-- Angular Application -->
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/angularJS/app/app.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/angularJS/app/controllers.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/angularJS/app/services.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/angularJS/app/directives.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/angularJS/app/filters.js")" type="text/javascript"></script>
+        <!-- External libs -->
+        <script src="@routes.Assets.at("javascripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/codemirror/lib/codemirror.js")" type="text/javascript"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    </body>
+
+</html>
