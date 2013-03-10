@@ -1,4 +1,4 @@
-@(title: String, lang:String)(content: Html)
+@(title: String, lang:String, user:Option[securesocial.core.Identity])(content: Html)
 
 <!DOCTYPE html>
 <html lang="@lang" ng-app="hope">
@@ -10,7 +10,58 @@
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
     </head>
     <body>
-        @content
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="/" class="brand">HOPE</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                          <li>
+                            <a href="/">Home</a>
+                          </li>
+                          <li>
+                            <a href="/">About</a>
+                          </li>
+                          <li>
+                            <a href="/">Contact</a>
+                          </li>
+                        </ul>
+                        <ul class="nav" id="user-menu">
+                            @if(user){
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        Beno&icirc;t Simard
+                                    <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/user/myprofile">Mon compte</a></li>
+                                        <li><a href="/user/cartes">Mes cartes</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="@securesocial.controllers.routes.LoginPage.logout()">Déconnexion</a></li>
+                                    </ul>
+                                </li>
+                            } else {
+                                <li><a href="@securesocial.controllers.routes.LoginPage.login()">Login</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            @content
+        </div>
+
+        <div id="loading" class="hide">
+            <img src="img/spinner.gif" alt="Laoding" /> Please wait, page is loading.
+        </div>
+
         <!-- Angular Application -->
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js" type="text/javascript"></script>
         <script src="@routes.Assets.at("javascripts/angularJS/app/app.js")" type="text/javascript"></script>
