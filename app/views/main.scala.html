@@ -21,32 +21,36 @@
                     <a href="/" class="brand">HOPE</a>
                     <div class="nav-collapse collapse">
                         <ul class="nav">
-                          <li>
-                            <a href="/">Home</a>
-                          </li>
-                          <li>
-                            <a href="/">About</a>
-                          </li>
-                          <li>
-                            <a href="/">Contact</a>
-                          </li>
+                            <li>
+                                <a href="/">Home</a>
+                            </li>
+                            <li>
+                                <a href="/">About</a>
+                            </li>
+                            <li>
+                                <a href="/">Contact</a>
+                            </li>
                         </ul>
                         <ul class="nav" id="user-menu">
-                            @if(user){
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        Beno&icirc;t Simard
-                                    <b class="caret"></b>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="/user/myprofile">Mon compte</a></li>
-                                        <li><a href="/user/cartes">Mes cartes</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="@securesocial.controllers.routes.LoginPage.logout()">Déconnexion</a></li>
-                                    </ul>
-                                </li>
-                            } else {
-                                <li><a href="@securesocial.controllers.routes.LoginPage.login()">Login</a></li>
+                            @user match {
+                                case Some(usr) => {
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <img src="@usr.avatarUrl" alt="avatar" />
+                                            @usr.fullName
+                                            <b class="caret"></b>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="/user/myprofile">Mon compte</a></li>
+                                            <li><a href="/user/cartes">Mes cartes</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="@securesocial.controllers.routes.LoginPage.logout()">Déconnexion</a></li>
+                                        </ul>
+                                    </li>
+                                }
+                                case None => {
+                                    <li><a href="@securesocial.controllers.routes.LoginPage.login()">Login</a></li>
+                                }
                             }
                         </ul>
                     </div>
@@ -59,7 +63,7 @@
         </div>
 
         <div id="loading" class="hide">
-            <img src="img/spinner.gif" alt="Laoding" /> Please wait, page is loading.
+            <img src="@routes.Assets.at("images/spinner.gif")" alt="Laoding" /> Please wait, page is loading.
         </div>
 
         <!-- Angular Application -->

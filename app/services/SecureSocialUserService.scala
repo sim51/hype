@@ -42,7 +42,7 @@ class SecureSocialUserService(application: Application) extends UserServicePlugi
 
   def save(user: Identity): Identity = {
     Logger.debug("user = %s".format(user))
-    Cache.set(user.id.id, user, 60)
+    Cache.set(user.id.id, user, 3600)
     user
   }
 
