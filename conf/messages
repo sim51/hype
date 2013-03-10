@@ -1,12 +1,16 @@
+# COMMON
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+footer.text=<p>Ce projet est sous la <a href="http://www.gnu.org/licenses/gpl.html" title="Licence GPL" target="_blank">GNU General Public Licence (GPL)</a>. Les sources sont hebergees sur <a href="https://github.com/sim51/csvmap" target="_blank">github</a>.<br>&copy; <a href="http://www.bsimard.com">Benoit SImard</a></p>
+
 # PAGE HOME
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 page.home=Home
 page.home.title=Html oriented presentation experience
-page.home.text=<p>n'importe quoi !</p>
-
-# PAGE ABOUT
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-page.about=About
+page.home.text=<p>A tools to help you to built HTML presentation with impress.js or reveal.js. You're presentation will be save on your github account as a gist. So your presentation is versioned !</p><p><a class="btn btn-primary btn-large" href="/login">Login with Github</a></p>
+page.home.col1.title=Presentation
+page.home.col1.text=<p>Texte of presentation</p>
+page.home.col2.title=Technique stack
+page.home.col2.text=<ul><li><a href="http://www.playframework.com" title="Play! framework">Play! framework 2.1</a> for I18N, Authentification, API  & Websocket</li><li><a href="http://www.angularjs.org" title="angular.js">angularJS</a> : to code the client side application !</li></ul>
 
 # PAGE CONTACT
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~

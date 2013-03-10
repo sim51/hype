@@ -7,7 +7,6 @@ var app = angular.module('hope', ['github', 'play']);
 app.config(function($routeProvider) {
 		$routeProvider
             .when('/', {templateUrl:'/assets/javascripts/angularJS/partials/home.html', controller: HomeCtrl})
-            .when('/about', {templateUrl:'/assets/javascripts/angularJS/partials/about.html', controller: AboutCtrl})
             .when('/contact', {templateUrl:'/assets/javascripts/angularJS/partials/contact.html', controller: ContactCtrl})
             //.when('/user', {templateUrl:'/assets/javascripts/angularJS/partials/user.html', controller: UserCtrl})
             //.when('/user/:user', {templateUrl:'/assets/javascripts/angularJS/partials/user.html', controller: UserCtrl})
