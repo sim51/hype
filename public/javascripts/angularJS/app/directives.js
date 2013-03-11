@@ -1,8 +1,8 @@
-angular.module('AwesomeChartJS', []).directive('awesomechart', function () {
+angular.module('pagination', []).directive('pagination', function () {
         return {
             restrict:'E',
             replace:true,
-            template:'<canvas>Your web-browser does not support the HTML 5 canvas element.</canvas>',
+            templateUrl:'/assets/javascripts/angularJS/partials/pagination.html',
             link:function (scope, element, attrs) {
                 var chart = new AwesomeChart(attrs.id);
                 chart.chartType = attrs.type || 'default';

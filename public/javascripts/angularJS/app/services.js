@@ -1,6 +1,6 @@
 'use strict';
 
-var githuburl = 'http://api.github.com';
+var githuburl = 'https://api.github.com';
 var playurl = 'http://localhost:9000';
 var SUCCESS=true
 
@@ -10,13 +10,25 @@ angular.module('github', [ ])
     .factory('Github', function($http, $location, $rootScope){
         var token = $rootScope.token;
         return {
-            list:function(owner){
+            user:function(owner){
                 var url = githuburl + '/user/' + user + '/gists?callback=JSON_CALLBACK&access_token=' + token;
                 return $http.jsonp( url )
                     .then(function (response){
                         if( response.status == 200 && response.data.meta.status == 200){
-                            //TODO
-                            return null;
+                            return response.data.data;
+                        }else{
+                            $rootScope.error.title = i18n('error.github');
+                            $rootScope.error.cause = i18n('error.case') + response.data.data.message;
+                            $location.path('/error');
+                        }
+                    });
+            },
+            list:function(owner){
+                var url = githuburl + '/gists?callback=JSON_CALLBACK&access_token=' + token;
+                return $http.jsonp( url )
+                    .then(function (response){
+                        if( response.status == 200 && response.data.meta.status == 200){
+                            return response.data.data;
                         }else{
                             $rootScope.error.title = i18n('error.github');
                             $rootScope.error.cause = i18n('error.case') + response.data.data.message;

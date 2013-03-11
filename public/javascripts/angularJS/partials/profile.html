@@ -1,11 +1,13 @@
 <div class="page-header">
     <h1>{{i18n('page.profile.title')}}</h1>
 </div>
-<div class="row">
+<div class="row-fluid">
     <div class="span8">
 
     </div>
     <div class="span4">
-        <div ng-bind-html-unsafe="i18n('page.contact.text')"></div>
+        <ul ng-repeat="prez in presentations">
+            <li>{{prez.url}}</li>
+        </ul>
     </div>
 </div>

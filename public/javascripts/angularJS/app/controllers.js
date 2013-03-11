@@ -25,7 +25,8 @@ function ContactCtrl($scope, Play) {
 /**
  *	Contact controller : do you want to contact me ?
  */
-function ProfileCtrl($scope, Play) {
+function ProfileCtrl($scope, Github) {
+    $scope.presentations = Github.list();
 
 }
 
