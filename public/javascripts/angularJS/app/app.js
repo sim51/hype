@@ -8,7 +8,7 @@ app.config(function($routeProvider) {
 		$routeProvider
             .when('/', {templateUrl:'/assets/javascripts/angularJS/partials/home.html', controller: HomeCtrl})
             .when('/contact', {templateUrl:'/assets/javascripts/angularJS/partials/contact.html', controller: ContactCtrl})
-            .when('/profile', {templateUrl:'/assets/javascripts/angularJS/partials/user.html', controller: ProfileCtrl})
+            .when('/profile', {templateUrl:'/assets/javascripts/angularJS/partials/profile.html', controller: ProfileCtrl})
             //.when('/user/:user', {templateUrl:'/assets/javascripts/angularJS/partials/user.html', controller: UserCtrl})
             //.when('/prez/:id', {templateUrl:'/assets/javascripts/angularJS/partials/user.html', controller: PrezViewCtrl})
             //.when('/prez/edit/:id', {templateUrl:'/assets/javascripts/angularJS/partials/user.html', controller: PrezEditCtrl})

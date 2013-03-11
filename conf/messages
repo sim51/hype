@@ -27,6 +27,7 @@ page.contact.send=Send !
 # PAGE USER PROFILE
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 page.profile=My Page
+page.profile.title=Mes présentations
 
 # ERROR  / SUCCESS
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
