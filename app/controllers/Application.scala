@@ -23,8 +23,9 @@ object Application extends Controller with securesocial.core.SecureSocial {
       case Some(user) => {
         user.oAuth2Info match {
           case Some(oAuthInfo2) => {
+            val cookie :Cookie =  Cookie("token", "\"" + oAuthInfo2.accessToken + "\"", -1, "/", None, false, false )
             Ok(views.html.index(request.user, "Coucou"))
-              .withCookies(Cookie("token",oAuthInfo2.accessToken))
+              .withCookies(cookie)
           }
           case None => {
             Ok(views.html.index(request.user, "Coucou"))

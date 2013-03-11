@@ -37,7 +37,7 @@
                                             <b class="caret"></b>
                                         </a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="#/userprofile">@Messages("page.profile")</a></li>
+                                            <li><a href="#/me">@Messages("page.profile")</a></li>
                                             <li class="divider"></li>
                                             <li><a href="@securesocial.controllers.routes.LoginPage.logout()">Déconnexion</a></li>
                                         </ul>
@@ -67,6 +67,7 @@
 
         <!-- Angular Application -->
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js" type="text/javascript"></script>
+        <script src="//code.angularjs.org/1.0.5/angular-cookies.min.js" type="text/javascript"></script>
         <script src="@routes.Assets.at("javascripts/angularJS/app/app.js")" type="text/javascript"></script>
         <script src="@routes.Assets.at("javascripts/angularJS/app/controllers.js")" type="text/javascript"></script>
         <script src="@routes.Assets.at("javascripts/angularJS/app/services.js")" type="text/javascript"></script>
