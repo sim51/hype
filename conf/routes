@@ -6,6 +6,7 @@
 # ~~~~~~~~~~~~~~~~~~~~~
 GET     /                           controllers.Application.index
 GET     /api/messages               controllers.Application.messages
+POST    /api/mail                   controllers.Application.mail
 
 # SECURE SOCIAL ROUTES
 # ~~~~~~~~~~~~~~~~~~~~~
