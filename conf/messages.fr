@@ -28,6 +28,15 @@ page.contact.send=Send !
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 page.profile=My Page
 
+# ERROR  / SUCCESS
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+error=Error
+success=Success
+error.cause=Raison is :
+error.sendmail=An error occured when email was send
+success.sendmail=Done ! An email has benn sent.
+error.github=An error occured with github API
+
 # SECURE SOCIAL
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 page.login=Login
