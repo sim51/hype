@@ -8,7 +8,7 @@ app.config(function($routeProvider) {
 		$routeProvider
             .when('/', {templateUrl:'/assets/javascripts/angularJS/partials/home.html', controller: HomeCtrl})
             .when('/contact', {templateUrl:'/assets/javascripts/angularJS/partials/contact.html', controller: ContactCtrl})
-            //.when('/me', {templateUrl:'/assets/javascripts/angularJS/partials/user.html', controller: UserCtrl})
+            .when('/profile', {templateUrl:'/assets/javascripts/angularJS/partials/user.html', controller: ProfileCtrl})
             //.when('/user/:user', {templateUrl:'/assets/javascripts/angularJS/partials/user.html', controller: UserCtrl})
             //.when('/prez/:id', {templateUrl:'/assets/javascripts/angularJS/partials/user.html', controller: PrezViewCtrl})
             //.when('/prez/edit/:id', {templateUrl:'/assets/javascripts/angularJS/partials/user.html', controller: PrezEditCtrl})
@@ -36,6 +36,6 @@ app.run(function($rootScope, $cookieStore, $cookies, $location, Play){
         $rootScope.token=$cookieStore.get('token').replace(/"/g,'');
         console.log("[MAIN] user is authenticate with token: " + $rootScope.token);
         // we redirect the user to its page
-        //$location.path("/me
+        $location.path("/profile");
     }
 });

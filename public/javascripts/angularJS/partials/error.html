@@ -1,1 +1,8 @@
-ERROR
+<div class="page-header">
+    <h1>{{$rootScope.error.title)}}</h1>
+</div>
+<div class="row">
+    <div class="span12">
+        <div ng-bind-html-unsafe="$rootScope.error.cause"></div>
+    </div>
+</div>
