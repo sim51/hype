@@ -8,7 +8,7 @@ object ApplicationBuild extends Build {
     val appVersion      = "1.0-SNAPSHOT"
 
     val appDependencies = Seq(
-      "securesocial" %% "securesocial" % "2.0.12"
+      "securesocial" %% "securesocial" % "2.0.12",
       "com.typesafe" %% "play-plugins-mailer" % "2.0.4"
     )
 

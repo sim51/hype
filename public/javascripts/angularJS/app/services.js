@@ -97,6 +97,14 @@ angular.module('play', [ ])
             },
             sendMail:function(name, email, message){
                 console.log("[Play|sendMail] Name:" + name + ", email:" + email +", message:" + message )
+                var url = playurl +'/api/mail'
+                var data = "name="+ name +"&email=" + email +"&message=" + message ;
+                $http({
+                    method: 'POST',
+                    url: url,
+                    data: data,
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                })
             }
         }
     });

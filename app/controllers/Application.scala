@@ -2,10 +2,8 @@ package controllers
 
 import scala.Some
 
-import play.api._
 import play.api.data._
 import play.api.data.Forms._
-import play.api.data.validation.Constraints._
 import play.api.i18n.{Lang, Messages}
 import play.api.Logger
 import play.api.libs.json.Json
@@ -15,11 +13,6 @@ import play.api.Play
 import play.api.Play.current
 
 import com.typesafe.plugin._
-
-import anorm._
-
-import models._
-import views._
 
 /**
  * Application's controllers.
