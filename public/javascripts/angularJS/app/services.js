@@ -1,7 +1,7 @@
 'use strict';
 
 var githuburl = 'https://api.github.com';
-var playurl = 'http://10.5.3.53:9000';
+var playurl = 'http://localhost:9000';
 var SUCCESS=true
 
 /* Services */
@@ -111,10 +111,23 @@ angular.module('play', [ ])
                         }
                     });
             },
-            sendMail:function(name, email, message){
-                console.log("[Play|sendMail] Name:" + name + ", email:" + email +", message:" + message )
+            token:function(){
+                var url = playurl + '/api/token';
+                return $http.get( url )
+                    .then(function (response){
+                        if( response.status == 200 ){
+                            return response.data.replace(/"/g, '');
+                        }else{
+                            $rootScope.error.title = "Error when retriving token.";
+                            $rootScope.error.cause = i18n('error.case') + "Http code (" + url + ") : " + response.status;
+                            $location.path('/error');
+                        }
+                    });
+            },
+            sendMail:function(name, email, message, token){
+                console.log("[Play|sendMail] Name:" + name + ", email:" + email +", message:" + message +", token:"+token)
                 var url = playurl +'/api/mail'
-                var data = "name="+ name +"&email=" + email +"&message=" + message ;
+                var data = "name="+ name +"&email=" + email +"&message=" + message + "&token=" + token;
                 $http({
                     method: 'POST',
                     url: url,
@@ -122,7 +135,13 @@ angular.module('play', [ ])
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                 })
                 .success(function(data, status, headers, config) {
-                    return SUCCESS;
+                    if( status == 200 ){
+                        return SUCCESS;
+                    }else{
+                        $rootScope.error.title = "Error when retriving token.";
+                        $rootScope.error.cause = i18n('error.case') + "Http code (" + url + ") : " + response.status;
+                        $location.path('/error');
+                    }
                 })
                 .error(function(data, status, headers, config) {
                     $rootScope.error.title = i18n('error.sendMail');

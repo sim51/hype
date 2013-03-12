@@ -1,18 +1,18 @@
 package controllers
 
-import scala.Some
-
+import play.api.cache.Cache
 import play.api.data._
 import play.api.data.Forms._
 import play.api.i18n.{Lang, Messages}
 import play.api.Logger
 import play.api.libs.json.Json
 import play.api.mvc._
-import play.api.mvc.Cookie
 import play.api.Play
 import play.api.Play.current
 
 import com.typesafe.plugin._
+import play.api.mvc.Cookie
+import scala.Some
 
 /**
  * Application's controllers.
@@ -60,6 +60,17 @@ object Application extends Controller with securesocial.core.SecureSocial {
   }
 
   /**
+   * JSON action to generate a unique uuid that be pull
+   * into cache during 15min.
+   * @return
+   */
+  def token = Action { implicit request =>
+    val uuid :String = java.util.UUID.randomUUID().toString()
+    Cache.set(uuid, true, 600)
+    Ok(Json.toJson(uuid))
+  }
+
+  /**
    * JSON action to retrive all messages.
    * @return
    */
@@ -68,22 +79,30 @@ object Application extends Controller with securesocial.core.SecureSocial {
       tuple(
         "name" -> nonEmptyText,
         "email" -> email,
-        "message" -> nonEmptyText
+        "message" -> nonEmptyText,
+        "token" -> nonEmptyText
       )
     ).bindFromRequest.fold(
       formWithErrors => BadRequest,
       {
-        case (name, email, message) =>
+        case (name, email, message, uuid) =>
           val subject :String = Play.current.configuration.getString("contact.subject").getOrElse("")
           Play.current.configuration.getString("contact.to") match {
             case Some(to) => {
-              val mail = use[MailerPlugin].email
-              mail.setSubject(subject)
-              mail.addRecipient(to)
-              mail.addFrom(name + "<" + email + ">")
-              //sends text/text
-              mail.send(message)
-              Ok("")
+              Cache.get(uuid) match {
+                case Some(uuid) => {
+                  val mail = use[MailerPlugin].email
+                  mail.setSubject(subject)
+                  mail.addRecipient(to)
+                  mail.addFrom(name + "<" + email + ">")
+                  //sends text/text
+                  mail.send(message)
+                  Ok("")
+                }
+                case None => {
+                  Forbidden("Token doesn't exist or has expired")
+                }
+              }
             }
             case None => {
               InternalServerError("There is no email for destination defined into application.conf")

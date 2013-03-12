@@ -1,5 +1,7 @@
 # COMMON
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+application.name=Hype
+application.baseline=Html yoda presentation experience
 footer.text=<p>Ce projet est sous la <a href="http://www.gnu.org/licenses/gpl.html" title="Licence GPL" target="_blank">GNU General Public Licence (GPL)</a>. Les sources sont hebergees sur <a href="https://github.com/sim51/csvmap" target="_blank">github</a>.<br>&copy; <a href="http://www.bsimard.com">Benoit SImard</a></p>
 
 # PAGE HOME
@@ -29,12 +31,14 @@ page.contact.send=Send !
 page.profile=My Page
 page.profile.title=Mes présentations
 
-# ERROR  / SUCCESS
+# ERROR / SUCCESS / WARNING
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 error=Error
 success=Success
+warning=Warning
 error.cause=Raison is :
 error.sendmail=An error occured when email was send
+warning.sendmail=You have 10min to fullfill the form.
 success.sendmail=Done ! An email has been sent.
 error.github=An error occured with github API
 

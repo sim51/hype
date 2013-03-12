@@ -1,5 +1,5 @@
 @(user:Option[securesocial.core.Identity])(implicit request: RequestHeader, lang:Lang)
 
-@main("HYPE: HTML yoda presentation experience", lang.language, user) {
+@main(Messages("application.name") + " " + Messages("application.baseline"), lang.language, user) {
     <div ng-view></div>
 }

@@ -1,8 +1,14 @@
-<div id="successMail" class="alert alert-success" ng-show="success">
+<div class="alert alert-warning" ng-show="warning">
+    <button type="button" class="close" ng-click="warning=false">&times;</button>
+    <h4>{{i18n('warning')}}</h4>
+    {{i18n('warning.sendmail')}}
+</div>
+<div class="alert alert-success" ng-show="success">
     <button type="button" class="close" ng-click="success=false">&times;</button>
     <h4>{{i18n('success')}}</h4>
     {{i18n('success.sendmail')}}
 </div>
+
 <div class="page-header">
     <h1>{{i18n('page.contact.title')}}</h1>
 </div>
