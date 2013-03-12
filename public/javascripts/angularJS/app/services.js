@@ -1,7 +1,7 @@
 'use strict';
 
 var githuburl = 'https://api.github.com';
-var playurl = 'http://localhost:9000';
+var playurl = 'http://10.5.3.53:9000';
 var SUCCESS=true
 
 /* Services */

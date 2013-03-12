@@ -5,7 +5,7 @@ footer.text=<p>Ce projet est sous la <a href="http://www.gnu.org/licenses/gpl.ht
 # PAGE HOME
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 page.home=Home
-page.home.title=Html oriented presentation experience
+page.home.title=Html yoda presentation experience
 page.home.text=<p>A tools to help you to built HTML presentation with impress.js or reveal.js. You're presentation will be save on your github account as a gist. So your presentation is versioned !</p><p><a class="btn btn-primary btn-large" href="/login">Login with Github</a></p>
 page.home.col1.title=Presentation
 page.home.col1.text=<p>Texte of presentation</p>

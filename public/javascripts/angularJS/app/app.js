@@ -1,7 +1,7 @@
 'use strict';
 
 /* List all necessary angular module for the application */
-var app = angular.module('hope', ['ngCookies', 'github', 'play']);
+var app = angular.module('hype', ['ngCookies', 'github', 'play']);
 
 /* Configure the application with the route */
 app.config(function($routeProvider) {
