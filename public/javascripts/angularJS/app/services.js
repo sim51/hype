@@ -28,7 +28,16 @@ angular.module('github', [ ])
                 return $http.jsonp( url )
                     .then(function (response){
                         if( response.status == 200 && response.data.meta.status == 200){
-                            return response.data.data;
+                            var gists = response.data.data;
+                            var prez = _.filter(gists, function(gist){
+                                if(gist.description.indexOf('#hype') > 0){
+                                    return true;
+                                }
+                                else{
+                                    return false;
+                                }
+                            })
+                            return prez;
                         }else{
                             $rootScope.error.title = i18n('error.github');
                             $rootScope.error.cause = i18n('error.case') + response.data.data.message;
