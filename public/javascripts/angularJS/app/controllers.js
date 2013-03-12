@@ -27,6 +27,5 @@ function ContactCtrl($scope, Play) {
  */
 function ProfileCtrl($scope, Github) {
     $scope.presentations = Github.list();
-
 }
 
