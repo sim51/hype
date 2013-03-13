@@ -29,7 +29,12 @@ page.contact.send=Send !
 # PAGE USER PROFILE
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 page.profile=My Page
-page.profile.title=Mes présentations
+page.profile.title=Mon compte
+page.profile.presentations.title=Mes présentations
+page.profile.create.title=Créer une présentations
+page.profile.name=Nom
+page.profile.description=Description
+page.profile.create=Créer !
 
 # ERROR / SUCCESS / WARNING
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~

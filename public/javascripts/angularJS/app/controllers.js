@@ -6,7 +6,7 @@
 function ErrorCtrl() {
 }
 /**
- *	Home controller : let's display some welcome text & explaination !
+ *	Home controller : let's display some welcome text & explanation !
  */
 function HomeCtrl() {}
 
@@ -32,5 +32,6 @@ function ContactCtrl($scope, Play) {
  */
 function ProfileCtrl($scope, Github) {
     $scope.presentations = Github.list();
+    $scope.create = function(){}
 }
 
