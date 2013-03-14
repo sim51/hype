@@ -1,7 +1,7 @@
 'use strict';
 
 /* List all necessary angular module for the application */
-var app = angular.module('hype', ['ngCookies', 'github', 'play']);
+var app = angular.module('hype', ['ngCookies', 'github', 'play', 'directives']);
 
 /* Configure the application with the route */
 app.config(function($routeProvider) {
@@ -14,7 +14,7 @@ app.config(function($routeProvider) {
             //.when('/prez/edit/:id', {templateUrl:'/assets/javascripts/angularJS/partials/user.html', controller: PrezEditCtrl})
 			.when('/error', {templateUrl: '/assets/javascripts/angularJS/partials/error.html', controller: ErrorCtrl})
 	      	.otherwise({redirectTo: '/'});
-	});
+});
 
 /* What we do when application start ? */
 app.run(function($rootScope, $cookieStore, $cookies, $location, Play){

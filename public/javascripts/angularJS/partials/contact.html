@@ -7,6 +7,10 @@
     <button type="button" class="close" ng-click="success=false">&times;</button>
     <h4>{{i18n('success')}}</h4>
     {{i18n('success.sendmail')}}
+    <div class="countdown" countdown-end="{{countdown}}">
+        <p ng-hide="over">{{days}} jours {{hours}} heures {{minutes}} min {{seconds}} sec</p>
+        <p ng-show="over">Done</p>
+    </div>
 </div>
 
 <div class="page-header">

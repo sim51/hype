@@ -71,7 +71,7 @@ object Application extends Controller with securesocial.core.SecureSocial {
   }
 
   /**
-   * JSON action to retrive all messages.
+   * JSON action to retrieve all messages.
    * @return
    */
   def mail = Action { implicit request =>
