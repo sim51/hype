@@ -43,7 +43,7 @@ success=Success
 warning=Warning
 error.cause=Raison is :
 error.sendmail=An error occured when email was send
-warning.sendmail=You have 10min to fullfill the form.
+warning.sendmail=You have 10 minutes to fulfil the form :
 success.sendmail=Done ! An email has been sent.
 error.github=An error occured with github API
 

@@ -31,39 +31,34 @@ angular.module('directives', [])
             }
         }
     })
-    .directive('countdown', function($timeout, countdownService) {
+    .directive('countdown', function($timeout, $rootScope) {
         return {
-            restrict: 'C',
-            link: function(scope, elm, attrs) {
-                scope.BigDay     = null;
-                scope.over     = false;
-
-                attrs.$observe('countdownEnd', function(value){
-                    if(scope.BigDay == null){
-                        scope.BigDay = new Date(value);
-                        scope.updateTime();
-                    }
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+                 console.log(attrs);
+                scope.$watch(attrs.countdown, function(value){
+                    scope.endDate = value;
+                    console.log("End countdown for : " + scope.endDate);
+                    scope.updateTime();
                 });
 
                 scope.updateTime = function() {
-                    var now = new Date();
-                    var timediff = scope.BigDay.getTime() - now.getTime();
-                    if ( timediff <= 1000 ) scope.finished();
+                    var seconds=0, minutes=0, hours=0, days=0;
+                    var timediff = scope.endDate.getTime() - new Date().getTime();
+                    if ( timediff <= 1000 ) {
+                        element.text("Game Over")
+                    }
                     else {
-                        scope.seconds     = Math.floor(timediff/1000);
-                        scope.minutes     = Math.floor(scope.seconds/60);
-                        scope.hours       = Math.floor(scope.minutes/60);
-                        scope.days        = Math.floor(scope.hours/24);
-                        scope.hours       %= 24;
-                        scope.seconds     %= 60;
-                        scope.minutes     %= 60;
+                        seconds     = Math.floor(timediff/1000);
+                        minutes     = Math.floor(seconds/60);
+                        hours       = Math.floor(minutes/60);
+                        days        = Math.floor(hours/24);
+                        hours       %= 24;
+                        seconds     %= 60;
+                        minutes     %= 60;
+                        element.text(minutes + ":" + seconds)
                         $timeout(scope.updateTime, 1000);
                     }
-                }
-
-                scope.finished = function() {
-                    scope.over = true;
-                    countdownService.addCount();
                 }
             }
         }

@@ -18,7 +18,7 @@ var ContactCtrl = ['$scope', 'Play', function($scope, Play) {
     Play.token().then(function(response){
         $scope.token = response;
         $scope.warning=true;
-        $scope.countdown = Date(new Date() + 10*60000);
+        $scope.countdown = new Date(new Date().getTime() + 10*60000);
     })
     $scope.sendMail = function(){
         // No future response, but if there is an error, we are redirect
