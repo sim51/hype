@@ -34,5 +34,10 @@ var ContactCtrl = ['$scope', 'Play', function($scope, Play) {
  */
 var ProfileCtrl = ['$scope', 'Github', function ($scope, Github) {
     $scope.presentations = Github.list();
-    $scope.create = function(){}
+    $scope.create = function(){
+        Github.create($scope.name, $scope.message).then(function(response){
+            $scope.success=true;
+            $scope.presentations = Github.list(); //TODO append instead of recall !!
+        })
+    }
 }]

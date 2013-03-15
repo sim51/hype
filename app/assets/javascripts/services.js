@@ -59,13 +59,12 @@ angular.module('github', [ ])
                         }
                     });   
             },
-            create:function(description, content){
-                var url = githuburl + '/gists?callback=JSON_CALLBACK&access_token=' + token;
-                return $http.post( url )
+            create:function(name, description){
+                var url = githuburl + '/gists?access_token=' + token;
+                return $http.post( url, '{"description":"Created via API #hype","public":"false","files":{"file1.txt":{"content":"Demo"}}')
                     .then(function (response){
-                        if( response.status == 200 && response.data.meta.status == 200){
-                            //TODO
-                            return null;
+                        if( response.status == 201){
+                            return response.data;
                         }else{
                         	$rootScope.error.title = i18n('error.github');
                             $rootScope.error.cause = i18n('error.case') + response.data.data.message;
