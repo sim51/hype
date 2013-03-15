@@ -42,9 +42,12 @@ error=Error
 success=Success
 warning=Warning
 error.cause=Raison is :
+# sending email
 error.sendmail=An error occured when email was send
 warning.sendmail=You have 10 minutes to fulfil the form :
 success.sendmail=Done ! An email has been sent.
+# create prez
+success.createprez=Done ! You're presentation is created.
 error.github=An error occured with github API
 
 # SECURE SOCIAL

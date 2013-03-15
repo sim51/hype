@@ -30,14 +30,18 @@ var ContactCtrl = ['$scope', 'Play', function($scope, Play) {
 }]
 
 /**
- *	Contact controller : do you want to contact me ?
+ *	Profile controller : manage all prez's user and permit to add one.
  */
 var ProfileCtrl = ['$scope', 'Github', function ($scope, Github) {
-    $scope.presentations = Github.list();
+    Github.list().then(function(response){
+        $scope.presentations = response;
+    })
     $scope.create = function(){
         Github.create($scope.name, $scope.message).then(function(response){
             $scope.success=true;
-            $scope.presentations = Github.list(); //TODO append instead of recall !!
-        })
+            $scope.name ='';
+            $scope.message = '';
+            $scope.presentations.push(response);
+        });
     }
 }]
