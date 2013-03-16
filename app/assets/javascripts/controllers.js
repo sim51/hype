@@ -37,7 +37,7 @@ var ProfileCtrl = ['$scope', 'Github', function ($scope, Github) {
         $scope.presentations = response;
     })
     $scope.create = function(){
-        Github.create($scope.name, $scope.message).then(function(response){
+        Github.create($scope.name, $scope.message, $scope.isPublic || false).then(function(response){
             $scope.success=true;
             $scope.name ='';
             $scope.message = '';

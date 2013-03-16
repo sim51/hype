@@ -73,14 +73,14 @@ angular.module('github', [ ])
                         }
                     });   
             },
-            create:function(name, description){
+            create:function(name, description, isPublic){
                 var url = githuburl + '/gists?access_token=' + token;
                 var prez = {
                         'description': description + '#hype',
-                        'public': false,
+                        'public': isPublic,
                         'files': {}
                         };
-                prez.files[name] = {content: 'demo'}; // ading file with good name !
+                prez.files[name] = {type: "text/html",content: 'demo'}; // ading file with good name !
                 return $http.post( url, prez)
                     .then(function (response){
                         if( response.status == 201){

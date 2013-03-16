@@ -15,6 +15,12 @@
         <h2>{{i18n('page.profile.create.title')}}</h2>
         <form name="prez" class="form-horizontal" accept-charset="utf-8" ng-submit="create()">
             <div class="control-group ">
+                <label for="public" class="control-label">{{i18n('page.profile.public')}}</label>
+                <div class="controls">
+                    <input class="input-xxlarge" type="checkbox" id="public" ng-model="isPublic">
+                </div>
+            </div>
+            <div class="control-group ">
                 <label for="name" class="control-label">{{i18n('page.profile.name')}}<span class="required">*</span></label>
                 <div class="controls">
                     <input class="input-xxlarge" type="text" placeholder="{{i18n('page.profile.name.placeholder')}}" id="name" ng-model="name" required>

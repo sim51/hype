@@ -35,6 +35,7 @@ page.profile=My Page
 page.profile.title=Mon compte
 page.profile.presentations.title=Mes présentations
 page.profile.create.title=Créer une présentations
+page.profile.public=Public ?
 page.profile.name=Nom
 page.profile.description=Description
 page.profile.create=Créer !
