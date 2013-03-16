@@ -4,6 +4,17 @@ var githuburl = 'https://api.github.com';
 var playurl = 'http://localhost:9000';
 var SUCCESS=true
 
+var gistToprez = function(gist){
+     return {
+                 id: gist.id,
+                 url: gist.url,
+                 name: Object.keys(gist.files)[0], // look if there is more than one files, which is prez (the first created)
+                 description: gist.description,
+                 updated: gist.updated,
+                 created: gist.created
+            }
+};
+
 /* Services */
 angular.module('github', [ ])
     /* Github gists securesocial*/
@@ -29,14 +40,17 @@ angular.module('github', [ ])
                     .then(function (response){
                         if( response.status == 200 && response.data.meta.status == 200){
                             var gists = response.data.data;
-                            var prez = _.filter(gists, function(gist){
+                            // filter gist that have hashtag #hype into description
+                            var gistsPrez = _.filter(gists, function(gist){
                                 if(gist.description.indexOf('#hype') > 0){
                                     return true;
                                 }
                                 else{
                                     return false;
                                 }
-                            })
+                            });
+                            // construct a list of presentation model : [id, url, name, description, updated, created ]
+                            var prez = _.map(gistsPrez, gistToprez);
                             return prez;
                         }else{
                             $rootScope.error.title = i18n('error.github');
@@ -61,10 +75,16 @@ angular.module('github', [ ])
             },
             create:function(name, description){
                 var url = githuburl + '/gists?access_token=' + token;
-                return $http.post( url, '{"description":"Created via API #hype","public":"false","files":{"file1.txt":{"content":"Demo"}}')
+                var prez = {
+                        'description': description + '#hype',
+                        'public': false,
+                        'files': {}
+                        };
+                prez.files[name] = {content: 'demo'}; // ading file with good name !
+                return $http.post( url, prez)
                     .then(function (response){
                         if( response.status == 201){
-                            return response.data;
+                            return gistToprez(response.data);
                         }else{
                         	$rootScope.error.title = i18n('error.github');
                             $rootScope.error.cause = i18n('error.case') + response.data.data.message;
