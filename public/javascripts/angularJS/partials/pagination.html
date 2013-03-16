@@ -1,5 +1,46 @@
 <div>
-    <ul ng-repeat="item in items">
-        <li>{{item.name}}</li>
-    </ul>
+
+    <div class="input-append">
+        <input type="text" ng-model="query" ng-change="search()" class="input-large search-query" placeholder="Search">
+        <span class="add-on"><i class="icon-search"></i></span>
+    </div>
+
+    <table class="table table-striped table-condensed table-hover">
+        <thead>
+            <tr>
+                <th class="name">Name&nbsp;<a ng-click="sort_by('name')"><i class="icon-sort"></i></a></th>
+                <th class="description">Description&nbsp;<a ng-click="sort_by('description')"><i class="icon-sort"></i></a></th>
+                <th class="created">Created&nbsp;<a ng-click="sort_by('created')"><i class="icon-sort"></i></a></th>
+                <th class="updated">Updated&nbsp;<a ng-click="sort_by('updated')"><i class="icon-sort"></i></a></th>
+            </tr>
+        </thead>
+        <tfoot>
+            <td colspan="6">
+                <div class="pagination pull-right">
+                    <ul>
+                        <li ng-class="{disabled: currentPage == 0}">
+                            <a href ng-click="prevPage()">« Prev</a>
+                        </li>
+                        <li ng-repeat="n in range(pagedItems.length)"
+                            ng-class="{active: n == currentPage}"
+                            ng-click="setPage()">
+                            <a href ng-bind="n + 1">1</a>
+                        </li>
+                        <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+                            <a href ng-click="nextPage()">Next »</a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tfoot>
+        <tbody>
+            <tr ng-repeat="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
+                <td>{{item.name}}</td>
+                <td>{{item.description}}</td>
+                <td>{{item.created}}</td>
+                <td>{{item.updated}}</td>
+            </tr>
+        </tbody>
+    </table>
+
 </div>
