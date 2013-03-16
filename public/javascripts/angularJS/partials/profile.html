@@ -9,9 +9,7 @@
 <div class="row-fluid">
     <div class="span6">
         <h2>{{i18n('page.profile.presentations.title')}}</h2>
-        <ul ng-repeat="prez in presentations">
-            <li>{{prez.url}}</li>
-        </ul>
+        <pagination items="presentations" sorting-order="url"></pagination>
     </div>
     <div class="span6">
         <h2>{{i18n('page.profile.create.title')}}</h2>
