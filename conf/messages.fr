@@ -3,6 +3,9 @@
 application.name=Hype
 application.baseline=Html yoda presentation experience
 footer.text=<p>Ce projet est sous la <a href="http://www.gnu.org/licenses/gpl.html" title="Licence GPL" target="_blank">GNU General Public Licence (GPL)</a>. Les sources sont hebergees sur <a href="https://github.com/sim51/csvmap" target="_blank">github</a>.<br>&copy; <a href="http://www.bsimard.com">Benoit SImard</a></p>
+search=Rechercher
+prev=Precedent
+next=Suivant
 
 # PAGE HOME
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
