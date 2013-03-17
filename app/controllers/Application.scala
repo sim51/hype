@@ -160,7 +160,7 @@ object Application extends Controller with securesocial.core.SecureSocial {
         if (response.status == 200){
           val is = Application.getClass().getResourceAsStream("/public/template/revealjs/ws-see.js")
           val src = Source.fromInputStream(is)
-          val js = src.mkString.replace("###ID###",id)
+          val js = src.mkString.replace("###ID###",id).replace("###DOMAIN###", request.host)
           Ok(views.html.prez.see(response.body.replace("###HYPE_INJECTION_CODE###", js)))
         }
         else{
@@ -191,7 +191,7 @@ object Application extends Controller with securesocial.core.SecureSocial {
                     if (response.status == 200){
                       val is = Application.getClass().getResourceAsStream("/public/template/revealjs/ws-run.js")
                       val src = Source.fromInputStream(is)
-                      val js = src.mkString.replace("###ID###",id)
+                      val js = src.mkString.replace("###ID###",id).replace("###DOMAIN###", request.host)
                       Ok(views.html.prez.see(response.body.replace("###HYPE_INJECTION_CODE###", js)))
                     }
                     else{

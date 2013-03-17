@@ -1,6 +1,6 @@
 var WS = window['MozWebSocket'] ? MozWebSocket : WebSocket;
-var socket = new WS("ws://localhost:9000/prez/ws?id=###ID###");
-
+var domain = '###DOMAIN###';
+var socket = new WS("ws://" + domain + "/prez/ws?id=###ID###");
 var sendMessage = function(txt) {
     console.log("[WS]: sending " + txt + " | " + JSON.stringify(txt))
     socket.send(JSON.stringify(txt));
