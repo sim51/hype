@@ -5,7 +5,7 @@ import play.api.data._
 import play.api.data.Forms._
 import play.api.i18n.{Lang, Messages}
 import play.api.Logger
-import play.api.libs.json.Json
+import play.api.libs.json.{JsObject, JsValue, Json}
 import play.api.libs.ws.WS
 import play.api.mvc._
 import play.api.Play
@@ -15,6 +15,7 @@ import com.typesafe.plugin._
 import scala.Some
 import io.Source
 import play.api.libs.iteratee.{Enumerator, Iteratee}
+import play.api.libs.concurrent.Akka
 
 /**
  * Application's controllers.
@@ -174,13 +175,13 @@ object Application extends Controller with securesocial.core.SecureSocial {
    *
    * @return
    */
-  def ws(id:String) = WebSocket.using[String] { request =>
-    // Log events to the console
-    val in = Iteratee.foreach[String](println).mapDone { _ =>
-      println("Disconnected")
+  def ws(id:String) = WebSocket.using[JsValue] { request =>
+    val channel = Enumerator.imperative[JsValue]()
+    val listener = Iteratee.foreach[JsValue] {
+      msg =>
+        Logger.debug(msg.toString())
+        channel.push(msg)
     }
-    // Send a single 'Hello!' message
-    val out = Enumerator("Hello!")
-    (in, out)
+    (listener, channel)
   }
 }

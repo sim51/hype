@@ -2,17 +2,13 @@ var WS = window['MozWebSocket'] ? MozWebSocket : WebSocket;
 var socket = new WS("ws://localhost:9000/prez/ws?id=###ID###");
 
 var receiveEvent = function(event) {
-    var data = JSON.parse(event.data);
-
-    // Handle errors
-    if(data.error) {
-        // display error !
-        alert(data.error);
-        socket.close();
-        return;
-    } else {
-        // TODO : goto the slide
-    }
-
+    console.log("[WS]: receiving " + event)
+    Reveal.slide(event.h,event.v);
 }
 socket.onmessage = receiveEvent;
+
+Reveal.addEventListener( 'slidechanged', function( event ) {
+    console.log("[EventListerner]: h=>"+ event.indexh + " v=>" + event.indexv);
+} );
+
+
