@@ -5,7 +5,7 @@ import play.api.data._
 import play.api.data.Forms._
 import play.api.i18n.{Lang, Messages}
 import play.api.Logger
-import play.api.libs.json.{JsObject, JsValue, Json}
+import play.api.libs.json.{JsString, JsObject, JsValue, Json}
 import play.api.libs.ws.WS
 import play.api.mvc._
 import play.api.Play
@@ -132,7 +132,26 @@ object Application extends Controller with securesocial.core.SecureSocial {
 
   /**
    * Action that do a proxy on gists  to display it has HTML.
+   *
+   * @return
+   */
+  def view(id:String, filename:String) = Action { implicit request =>
+    Async {
+      WS.url("https://gist.github.com/raw/" + id + "/" + filename).get().map { response =>
+        if (response.status == 200){
+          Ok(views.html.prez.see(response.body.replace("###HYPE_INJECTION_CODE###", "")))
+        }
+        else{
+          NotFound("Oups !!!")
+        }
+      }
+    }
+  }
+
+  /**
+   * Action that do a proxy on gists  to display it has HTML for viewer.
    * Moreover, we do a little injection of JS code for WS !
+   *
    * @return
    */
   def see(id:String, filename:String) = Action { implicit request =>
@@ -181,8 +200,10 @@ object Application extends Controller with securesocial.core.SecureSocial {
   def ws(id:String) = WebSocket.using[JsValue] { request =>
     val in = Iteratee.foreach[JsValue] {
       msg =>
+        val h:JsValue =  msg.\("h")
+        val v:JsValue =  msg.\("v")
         Logger.debug(msg.toString())
-        controlsChannel.push(msg)
+        controlsChannel.push(JsObject(Seq("id"->JsString(id), "h"->h, "v"->v)))
     }
     (in, controlsStream)
   }

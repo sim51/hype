@@ -9,6 +9,7 @@ GET     /api/messages               controllers.Application.messages
 POST    /api/mail                   controllers.Application.mail
 GET     /api/token                  controllers.Application.token
 GET     /api/template               controllers.Application.template
+GET     /prez/view/:id/:filename     controllers.Application.view(id, filename)
 GET     /prez/see/:id/:filename     controllers.Application.see(id, filename)
 GET     /prez/run/:id/:filename     controllers.Application.run(id, filename)
 GET     /prez/ws                    controllers.Application.ws(id)
