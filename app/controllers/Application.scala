@@ -13,6 +13,7 @@ import play.api.Play.current
 import com.typesafe.plugin._
 import play.api.mvc.Cookie
 import scala.Some
+import io.Source
 
 /**
  * Application's controllers.
@@ -110,6 +111,13 @@ object Application extends Controller with securesocial.core.SecureSocial {
           }
       }
     )
+  }
 
+  def template = Action { implicit request =>
+    val is = Application.getClass().getResourceAsStream("/public/template/revealjs/index.html")
+    val src = Source.fromInputStream(is)
+    val txt = src.mkString
+    src.close ()
+    Ok(txt)
   }
 }

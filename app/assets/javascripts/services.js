@@ -73,14 +73,14 @@ angular.module('github', [ ])
                         }
                     });   
             },
-            create:function(name, description, isPublic){
+            create:function(name, description, isPublic, template){
                 var url = githuburl + '/gists?access_token=' + token;
                 var prez = {
                         'description': description + '#hype',
                         'public': isPublic,
                         'files': {}
                         };
-                prez.files[name] = {type: "text/html",content: 'demo'}; // ading file with good name !
+                prez.files[name] = {type: "text/html", content: template}; // adding file with good name !
                 return $http.post( url, prez)
                     .then(function (response){
                         if( response.status == 201){
@@ -141,16 +141,15 @@ angular.module('play', [ ])
             },
             token:function(){
                 var url = playurl + '/api/token';
-                return $http.get( url )
-                    .then(function (response){
-                        if( response.status == 200 ){
-                            return response.data.replace(/"/g, '');
-                        }else{
-                            $rootScope.error.title = "Error when retriving token.";
-                            $rootScope.error.cause = i18n('error.case') + "Http code (" + url + ") : " + response.status;
-                            $location.path('/error');
-                        }
-                    });
+                return $http.get( url ).then(function (response){
+                    if( response.status == 200 ){
+                        return response.data.replace(/"/g, '');
+                    }else{
+                        $rootScope.error.title = "Error when retriving token.";
+                        $rootScope.error.cause = i18n('error.case') + "Http code (" + url + ") : " + response.status;
+                        $location.path('/error');
+                    }
+                });
             },
             sendMail:function(name, email, message, token){
                 console.log("[Play|sendMail] Name:" + name + ", email:" + email +", message:" + message +", token:"+token)
@@ -176,6 +175,21 @@ angular.module('play', [ ])
                     $rootScope.error.cause = i18n('error.case') + "Http code (" + url + ") : " + status;
                     $location.path('/error');
                 })
+            },
+            template:function(name, description){
+                var url = playurl +'/api/template'
+                return $http.get( url ).then(function (response){
+                    if( response.status == 200 ){
+                        var template = response.data;
+                        template.replace(/__name__/g, name);
+                        template.replace(/__description__/g, description);
+                        return template;
+                    }else{
+                        $rootScope.error.title = "Error when retriving token.";
+                        $rootScope.error.cause = i18n('error.case') + "Http code (" + url + ") : " + response.status;
+                        $location.path('/error');
+                    }
+                });
             }
         }
     });

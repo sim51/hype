@@ -32,16 +32,20 @@ var ContactCtrl = ['$scope', 'Play', function($scope, Play) {
 /**
  *	Profile controller : manage all prez's user and permit to add one.
  */
-var ProfileCtrl = ['$scope', 'Github', function ($scope, Github) {
+var ProfileCtrl = ['$scope', 'Github', 'Play', function ($scope, Github, Play) {
     Github.list().then(function(response){
         $scope.presentations = response;
     })
     $scope.create = function(){
-        Github.create($scope.name, $scope.message, $scope.isPublic || false).then(function(response){
-            $scope.success=true;
-            $scope.name ='';
-            $scope.message = '';
-            $scope.presentations.push(response);
-        });
+        // getting template prez
+        Play.template($scope.name, $scope.message).then(function(template){
+            // create the gist
+            Github.create($scope.name, $scope.message, $scope.isPublic || false, template).then(function(response){
+                $scope.success=true;
+                $scope.name ='';
+                $scope.message = '';
+                $scope.presentations.push(response);
+            });
+        })
     }
 }]

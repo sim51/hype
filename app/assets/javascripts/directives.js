@@ -25,7 +25,6 @@ angular.module('directives', [])
 
                 // init the filtered items
                 watch = function (newValue, oldValue, scope) {
-                    console.log('newValue:' + newValue + " | oldValue:" +oldValue );
                     // data are loaded with async, so sometimes, there are undefined.
                     // we avoid it.
                     scope.items = []
