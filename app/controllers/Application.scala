@@ -133,7 +133,12 @@ object Application extends Controller with securesocial.core.SecureSocial {
   def see(id:String, filename:String) = Action { implicit request =>
     Async {
       WS.url("https://gist.github.com/raw/" + id + "/" + filename).get().map { response =>
-        Ok(views.html.prez.see(response.body.replace(" ###HYPE_INJECTION_CODE### ", "")))
+        if (response.status == 200){
+          Ok(views.html.prez.see(response.body.replace("###HYPE_INJECTION_CODE###", "")))
+        }
+        else{
+          NotFound("Oups !!!")
+        }
       }
     }
   }
