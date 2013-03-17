@@ -106,12 +106,6 @@ angular.module('directives', [])
                     }
                     scope.search();
                 };
-                scope.see = function(id){
-                    $location.path('/prez/' + id);
-                };
-                scope.run = function(id){
-                    $location.path('/prez/run' + id);
-                }
                 scope.edit = function(id){
                     $location.path('/prez/edit' + id);
                 }

@@ -14,6 +14,7 @@ import play.api.Play.current
 import com.typesafe.plugin._
 import scala.Some
 import io.Source
+import play.api.libs.iteratee.{Enumerator, Iteratee}
 
 /**
  * Application's controllers.
@@ -127,19 +128,59 @@ object Application extends Controller with securesocial.core.SecureSocial {
   }
 
   /**
-   * Action that do a proxy on gists
+   * Action that do a proxy on gists  to display it has HTML.
+   * Moreover, we do a little injection of JS code for WS !
    * @return
    */
   def see(id:String, filename:String) = Action { implicit request =>
     Async {
       WS.url("https://gist.github.com/raw/" + id + "/" + filename).get().map { response =>
         if (response.status == 200){
-          Ok(views.html.prez.see(response.body.replace("###HYPE_INJECTION_CODE###", "")))
+          val is = Application.getClass().getResourceAsStream("/public/template/revealjs/ws-see.js")
+          val src = Source.fromInputStream(is)
+          val js = src.mkString.replace("###ID###",id)
+          Ok(views.html.prez.see(response.body.replace("###HYPE_INJECTION_CODE###", js)))
         }
         else{
           NotFound("Oups !!!")
         }
       }
     }
+  }
+
+  /**
+   * Action that do a proxy on gists  to display it has HTML.
+   * Moreover, we do a little injection of JS code for WS !
+   * @return
+   */
+  def run(id:String, filename:String) = Action { implicit request =>
+    Async {
+      WS.url("https://gist.github.com/raw/" + id + "/" + filename).get().map { response =>
+        if (response.status == 200){
+          val is = Application.getClass().getResourceAsStream("/public/template/revealjs/ws-run.js")
+          val src = Source.fromInputStream(is)
+          val js = src.mkString.replace("###ID###",id)
+          Ok(views.html.prez.see(response.body.replace("###HYPE_INJECTION_CODE###", js)))
+        }
+        else{
+          NotFound("Oups !!!")
+        }
+      }
+    }
+  }
+
+  /**
+   * Webscoket for presentation !
+   *
+   * @return
+   */
+  def ws(id:String) = WebSocket.using[String] { request =>
+    // Log events to the console
+    val in = Iteratee.foreach[String](println).mapDone { _ =>
+      println("Disconnected")
+    }
+    // Send a single 'Hello!' message
+    val out = Enumerator("Hello!")
+    (in, out)
   }
 }
