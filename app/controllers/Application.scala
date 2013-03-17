@@ -14,8 +14,8 @@ import play.api.Play.current
 import com.typesafe.plugin._
 import scala.Some
 import io.Source
-import play.api.libs.iteratee.{Enumerator, Iteratee}
-import play.api.libs.concurrent.Akka
+import play.api.libs.iteratee.{Concurrent, Enumerator, Iteratee}
+import play.api.libs.concurrent.Execution.Implicits._
 
 /**
  * Application's controllers.
@@ -32,10 +32,12 @@ object Application extends Controller with securesocial.core.SecureSocial {
       case Some(user) => {
         user.oAuth2Info match {
           case Some(oAuthInfo2) => {
-            val cookie :Cookie =  Cookie("token", "\"" + oAuthInfo2.accessToken + "\"", -1, "/", None, false, false )
+            Logger.debug("Having user with token !: " + oAuthInfo2.accessToken)
+            val cookie:Cookie =  Cookie("token", "\"" + oAuthInfo2.accessToken + "\"", None , "/", None, false, false)
             Ok(views.html.index(request.user)).withCookies(cookie)
           }
           case None => {
+            Logger.debug("Having user without token !")
             Ok(views.html.index(request.user))
           }
         }
@@ -86,32 +88,32 @@ object Application extends Controller with securesocial.core.SecureSocial {
         "token" -> nonEmptyText
       )
     ).bindFromRequest.fold(
-      formWithErrors => BadRequest,
-      {
-        case (name, email, message, uuid) =>
-          val subject :String = Play.current.configuration.getString("contact.subject").getOrElse("")
-          Play.current.configuration.getString("contact.to") match {
-            case Some(to) => {
-              Cache.get(uuid) match {
-                case Some(uuid) => {
-                  val mail = use[MailerPlugin].email
-                  mail.setSubject(subject)
-                  mail.addRecipient(to)
-                  mail.addFrom(name + "<" + email + ">")
-                  //sends text/text
-                  mail.send(message)
-                  Ok("")
-                }
-                case None => {
-                  Forbidden("Token doesn't exist or has expired")
-                }
+    formWithErrors => BadRequest,
+    {
+      case (name, email, message, uuid) =>
+        val subject :String = Play.current.configuration.getString("contact.subject").getOrElse("")
+        Play.current.configuration.getString("contact.to") match {
+          case Some(to) => {
+            Cache.get(uuid) match {
+              case Some(uuid) => {
+                val mail = use[MailerPlugin].email
+                mail.setSubject(subject)
+                mail.addRecipient(to)
+                mail.addFrom(name + "<" + email + ">")
+                //sends text/text
+                mail.send(message)
+                Ok("")
+              }
+              case None => {
+                Forbidden("Token doesn't exist or has expired")
               }
             }
-            case None => {
-              InternalServerError("There is no email for destination defined into application.conf")
-            }
           }
-      }
+          case None => {
+            InternalServerError("There is no email for destination defined into application.conf")
+          }
+        }
+    }
     )
   }
 
@@ -175,13 +177,13 @@ object Application extends Controller with securesocial.core.SecureSocial {
    *
    * @return
    */
+  val (controlsStream, controlsChannel) = Concurrent.broadcast[JsValue]
   def ws(id:String) = WebSocket.using[JsValue] { request =>
-    val channel = Enumerator.imperative[JsValue]()
-    val listener = Iteratee.foreach[JsValue] {
+    val in = Iteratee.foreach[JsValue] {
       msg =>
         Logger.debug(msg.toString())
-        channel.push(msg)
+        controlsChannel.push(msg)
     }
-    (listener, channel)
+    (in, controlsStream)
   }
 }
