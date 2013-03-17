@@ -173,22 +173,48 @@ object Application extends Controller with securesocial.core.SecureSocial {
   /**
    * Action that do a proxy on gists  to display it has HTML.
    * Moreover, we do a little injection of JS code for WS !
+   *
    * @return
    */
-  def run(id:String, filename:String) = Action { implicit request =>
-    Async {
-      WS.url("https://gist.github.com/raw/" + id + "/" + filename).get().map { response =>
-        if (response.status == 200){
-          val is = Application.getClass().getResourceAsStream("/public/template/revealjs/ws-run.js")
-          val src = Source.fromInputStream(is)
-          val js = src.mkString.replace("###ID###",id)
-          Ok(views.html.prez.see(response.body.replace("###HYPE_INJECTION_CODE###", js)))
-        }
-        else{
-          NotFound("Oups !!!")
+  def run(id:String, filename:String) = SecuredAction { implicit request =>
+    request.user.oAuth2Info match {
+      case Some(oAuthInfo2) => {
+        Async {
+          WS.url("https://api.github.com/gists/" + id + "?token=" + oAuthInfo2.accessToken).get().map { response =>
+            if(response.status == 200){
+              val owner = response.json.\("user").\("id")
+              Logger.debug("Owner of the gist is " + owner)
+              Logger.debug("Current user is " + request.user.id.id)
+              if(owner.toString() == request.user.id.id){
+                Async {
+                  WS.url("https://gist.github.com/raw/" + id + "/" + filename).get().map { response =>
+                    if (response.status == 200){
+                      val is = Application.getClass().getResourceAsStream("/public/template/revealjs/ws-run.js")
+                      val src = Source.fromInputStream(is)
+                      val js = src.mkString.replace("###ID###",id)
+                      Ok(views.html.prez.see(response.body.replace("###HYPE_INJECTION_CODE###", js)))
+                    }
+                    else{
+                      NotFound("Oups !!!")
+                    }
+                  }
+                }
+              }
+              else{
+                Forbidden("This is not your gist. You can fork it !")
+              }
+            }
+            else{
+              NotFound("Gist " + id + " not found")
+            }
+          }
         }
       }
+      case None => {
+        Forbidden("You haven't an oAuth token")
+      }
     }
+
   }
 
   /**
