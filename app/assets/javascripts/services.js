@@ -77,6 +77,8 @@ angular.module('github', [ ])
             },
             create:function(name, description, isPublic, template){
                 var url = githuburl + '/gists?access_token=' + token;
+                template = template.replace(/__name__/g, name);
+                template = template.replace(/__description__/g, description);
                 var prez = {
                         'description': description + '#hype',
                         'public': isPublic,
