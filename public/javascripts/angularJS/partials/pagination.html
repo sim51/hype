@@ -39,8 +39,8 @@
             <tr ng-repeat="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
                 <td>{{item.name}}</td>
                 <td>{{item.description}}</td>
-                <td>{{item.created}}</td>
-                <td>{{item.updated}}</td>
+                <td>{{formatDate(item.created)}}</td>
+                <td>{{formatDate(item.updated)}}</td>
             </tr>
         </tbody>
     </table>

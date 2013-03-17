@@ -30,6 +30,12 @@ app.run(function($rootScope, $cookieStore, $cookies, $location, Play){
         return  $rootScope.messages[key];
     }
 
+    // format date
+    $rootScope.formatDate = function( date1 ) {
+        var date = new Date(Date.parse( date1 ));
+        return date.toLocaleDateString();
+    }
+
     // we look at cookies to know user is logged
     if ( $cookies['token'] ) {
         $rootScope.isConnected=true;
