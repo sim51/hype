@@ -9,7 +9,7 @@ GET     /api/messages               controllers.Application.messages
 POST    /api/mail                   controllers.Application.mail
 GET     /api/token                  controllers.Application.token
 GET     /api/template               controllers.Application.template
-POST    /prez/see                   controllers.Application.see
+GET     /prez/see/:id/:filename     controllers.Application.see(id, filename)
 
 # SECURE SOCIAL ROUTES
 # ~~~~~~~~~~~~~~~~~~~~~

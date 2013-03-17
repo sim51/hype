@@ -45,10 +45,7 @@
                 <td class="action">
                     <a ng-click="edit(item.id)" target="_blank" title="Edit"><i class="icon-pencil"></i></a>
                     <a href="{{item.githuburl}}" target="_blank" title="See it on github"><i class="icon-github"></i></a>
-                    <form name="see" accept-charset="utf-8" action="/prez/see" method="POST" target="_blank">
-                        <input type="hidden" name="url" value="{{item.rawurl}}">
-                        <button class="btn btn-link" type="submit" title="See it in full HTML"><i class="icon-eye-open"></i></button>
-                    </form>
+                    <a href="/prez/see/{{item.id}}/{{item.name}}" target="_blank" title="See it in full HTML"><i class="icon-eye-open"></i></i></a>
                     <a ng-click="run(item.id)" target="_blank" title="Run the prez"><i class="icon-play"></i></a>
                 </td>
             </tr>

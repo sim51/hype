@@ -126,20 +126,15 @@ object Application extends Controller with securesocial.core.SecureSocial {
     Ok(txt)
   }
 
-  def see = Action { implicit request =>
-    Form(
-        "url" -> nonEmptyText
-    ).bindFromRequest.fold(
-      formWithErrors => BadRequest,
-      {
-        case (url) =>
-          Async {
-            WS.url("https://gist.github.com/sim51/295cfc2dc69c800e9e4d/raw/fee488a5cb1ef7db01bd9d5d778358937c597111/test+revealjs").get().map { response =>
-            Ok(views.html.prez.see(response.body))
-          }
-        }
+  /**
+   * Action that do a proxy on gists
+   * @return
+   */
+  def see(id:String, filename:String) = Action { implicit request =>
+    Async {
+      WS.url("https://gist.github.com/raw/" + id + "/" + filename).get().map { response =>
+        Ok(views.html.prez.see(response.body.replace(" ###HYPE_INJECTION_CODE### ", "")))
       }
-    )
+    }
   }
-
 }
