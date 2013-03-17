@@ -6,12 +6,12 @@ import play.api.data.Forms._
 import play.api.i18n.{Lang, Messages}
 import play.api.Logger
 import play.api.libs.json.Json
+import play.api.libs.ws.WS
 import play.api.mvc._
 import play.api.Play
 import play.api.Play.current
 
 import com.typesafe.plugin._
-import play.api.mvc.Cookie
 import scala.Some
 import io.Source
 
@@ -113,6 +113,11 @@ object Application extends Controller with securesocial.core.SecureSocial {
     )
   }
 
+  /**
+   * Retrieve a template of presentation, and send it back into pure text.
+   *
+   * @return
+   */
   def template = Action { implicit request =>
     val is = Application.getClass().getResourceAsStream("/public/template/revealjs/index.html")
     val src = Source.fromInputStream(is)
@@ -120,4 +125,21 @@ object Application extends Controller with securesocial.core.SecureSocial {
     src.close ()
     Ok(txt)
   }
+
+  def see = Action { implicit request =>
+    Form(
+        "url" -> nonEmptyText
+    ).bindFromRequest.fold(
+      formWithErrors => BadRequest,
+      {
+        case (url) =>
+          Async {
+            WS.url("https://gist.github.com/sim51/295cfc2dc69c800e9e4d/raw/fee488a5cb1ef7db01bd9d5d778358937c597111/test+revealjs").get().map { response =>
+            Ok(views.html.prez.see(response.body))
+          }
+        }
+      }
+    )
+  }
+
 }

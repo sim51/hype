@@ -14,6 +14,7 @@
                 <th class="description">Description&nbsp;<a ng-click="sort_by('description')"><i class="icon-sort"></i></a></th>
                 <th class="created">Created&nbsp;<a ng-click="sort_by('created')"><i class="icon-sort"></i></a></th>
                 <th class="updated">Updated&nbsp;<a ng-click="sort_by('updated')"><i class="icon-sort"></i></a></th>
+                <th>Action</th>
             </tr>
         </thead>
         <tfoot>
@@ -41,6 +42,15 @@
                 <td ng-bind-html-unsafe="item.description"></td>
                 <td>{{formatDate(item.created)}}</td>
                 <td>{{formatDate(item.updated)}}</td>
+                <td class="action">
+                    <a ng-click="edit(item.id)" target="_blank" title="Edit"><i class="icon-pencil"></i></a>
+                    <a href="{{item.githuburl}}" target="_blank" title="See it on github"><i class="icon-github"></i></a>
+                    <form name="see" accept-charset="utf-8" action="/prez/see" method="POST" target="_blank">
+                        <input type="hidden" name="url" value="{{item.rawurl}}">
+                        <button class="btn btn-link" type="submit" title="See it in full HTML"><i class="icon-eye-open"></i></button>
+                    </form>
+                    <a ng-click="run(item.id)" target="_blank" title="Run the prez"><i class="icon-play"></i></a>
+                </td>
             </tr>
         </tbody>
     </table>

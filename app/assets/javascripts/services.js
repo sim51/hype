@@ -11,7 +11,9 @@ var gistToprez = function(gist){
                  name: Object.keys(gist.files)[0], // look if there is more than one files, which is prez (the first created)
                  description: gist.description.replace(/#hype/g, '').replace(/\n/g, "<br/>"),
                  updated: gist.updated_at,
-                 created: gist.created_at
+                 created: gist.created_at,
+                 githuburl : gist.html_url,
+                 rawurl : gist.files[Object.keys(gist.files)[0]].raw_url
             }
 };
 
@@ -80,7 +82,7 @@ angular.module('github', [ ])
                         'public': isPublic,
                         'files': {}
                         };
-                prez.files[name] = {type: "text/html", content: template}; // adding file with good name !
+                prez.files[name + '.html'] = {type: "text/html", content: template}; // adding file with good name !
                 return $http.post( url, prez)
                     .then(function (response){
                         if( response.status == 201){

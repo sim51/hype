@@ -4,12 +4,12 @@
  *  Error.
  */
 function ErrorCtrl() {
-}
+};
 
 /**
  *	Home controller : let's display some welcome text & explanation !
  */
-function HomeCtrl() {}
+function HomeCtrl() {};
 
 /**
  *	Contact controller : do you want to contact me ?
@@ -27,7 +27,7 @@ var ContactCtrl = ['$scope', 'Play', function($scope, Play) {
         $scope.success=true;
         $scope.warning=false
     }
-}]
+}];
 
 /**
  *	Profile controller : manage all prez's user and permit to add one.
@@ -48,4 +48,8 @@ var ProfileCtrl = ['$scope', 'Github', 'Play', function ($scope, Github, Play) {
             });
         })
     }
-}]
+}];
+
+var PrezEditCtrl = ['$scope', 'Github', function ($scope, Github) {
+
+}];

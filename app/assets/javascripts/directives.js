@@ -1,5 +1,5 @@
 angular.module('directives', [])
-    .directive('pagination', function ($filter) {
+    .directive('pagination', function ($filter, $location) {
         return {
             restrict:'E',
             replace:true,
@@ -106,6 +106,15 @@ angular.module('directives', [])
                     }
                     scope.search();
                 };
+                scope.see = function(id){
+                    $location.path('/prez/' + id);
+                };
+                scope.run = function(id){
+                    $location.path('/prez/run' + id);
+                }
+                scope.edit = function(id){
+                    $location.path('/prez/edit' + id);
+                }
 
                 // Let's watch the data & do the job baby
                 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
