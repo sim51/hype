@@ -9,7 +9,7 @@ var gistToprez = function(gist){
                  id: gist.id,
                  url: gist.url,
                  name: Object.keys(gist.files)[0], // look if there is more than one files, which is prez (the first created)
-                 description: gist.description.replace(/#hype/g, ''),
+                 description: gist.description.replace(/#hype/g, '').replace(/\n/g, "<br/>"),
                  updated: gist.updated_at,
                  created: gist.created_at
             }
