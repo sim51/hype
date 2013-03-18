@@ -6,7 +6,7 @@ import play.api.data.Forms._
 import play.api.i18n.{Lang, Messages}
 import play.api.Logger
 import play.api.libs.json.{JsString, JsObject, JsValue, Json}
-import play.api.libs.ws.WS
+import play.api.libs.ws.{Response, WS}
 import play.api.mvc._
 import play.api.Play
 import play.api.Play.current
@@ -14,8 +14,11 @@ import play.api.Play.current
 import com.typesafe.plugin._
 import scala.Some
 import io.Source
-import play.api.libs.iteratee.{Concurrent, Enumerator, Iteratee}
+import play.api.libs.iteratee.{Concurrent, Iteratee}
 import play.api.libs.concurrent.Execution.Implicits._
+import securesocial.core.SecureSocial
+import concurrent.{Await, Future}
+import scala.concurrent.duration._
 
 /**
  * Application's controllers.
@@ -173,48 +176,29 @@ object Application extends Controller with securesocial.core.SecureSocial {
   /**
    * Action that do a proxy on gists  to display it has HTML.
    * Moreover, we do a little injection of JS code for WS !
+   * Only the owner can "run" the presentation.
    *
    * @return
    */
   def run(id:String, filename:String) = SecuredAction { implicit request =>
-    request.user.oAuth2Info match {
-      case Some(oAuthInfo2) => {
-        Async {
-          WS.url("https://api.github.com/gists/" + id + "?token=" + oAuthInfo2.accessToken).get().map { response =>
-            if(response.status == 200){
-              val owner = response.json.\("user").\("id")
-              Logger.debug("Owner of the gist is " + owner)
-              Logger.debug("Current user is " + request.user.id.id)
-              if(owner.toString() == request.user.id.id){
-                Async {
-                  WS.url("https://gist.github.com/raw/" + id + "/" + filename).get().map { response =>
-                    if (response.status == 200){
-                      val is = Application.getClass().getResourceAsStream("/public/template/revealjs/ws-run.js")
-                      val src = Source.fromInputStream(is)
-                      val js = src.mkString.replace("###ID###",id).replace("###DOMAIN###", request.host)
-                      Ok(views.html.prez.see(response.body.replace("###HYPE_INJECTION_CODE###", js)))
-                    }
-                    else{
-                      NotFound("Oups !!!")
-                    }
-                  }
-                }
-              }
-              else{
-                Forbidden("This is not your gist. You can fork it !")
-              }
-            }
-            else{
-              NotFound("Gist " + id + " not found")
-            }
+    if(isGistOwner(id, request.user)) {
+      Async {
+        WS.url("https://gist.github.com/raw/" + id + "/" + filename).get().map { response =>
+          if (response.status == 200){
+            val is = Application.getClass().getResourceAsStream("/public/template/revealjs/ws-run.js")
+            val src = Source.fromInputStream(is)
+            val js = src.mkString.replace("###ID###",id).replace("###DOMAIN###", request.host)
+            Ok(views.html.prez.see(response.body.replace("###HYPE_INJECTION_CODE###", js)))
+          }
+          else{
+            NotFound("Oups !!!")
           }
         }
       }
-      case None => {
-        Forbidden("You haven't an oAuth token")
-      }
     }
-
+    else{
+      Forbidden("This is not your gist. You can fork it !")
+    }
   }
 
   /**
@@ -224,13 +208,56 @@ object Application extends Controller with securesocial.core.SecureSocial {
    */
   val (controlsStream, controlsChannel) = Concurrent.broadcast[JsValue]
   def ws(id:String) = WebSocket.using[JsValue] { request =>
-    val in = Iteratee.foreach[JsValue] {
-      msg =>
-        val h:JsValue =  msg.\("h")
-        val v:JsValue =  msg.\("v")
-        Logger.debug(msg.toString())
-        controlsChannel.push(JsObject(Seq("id"->JsString(id), "h"->h, "v"->v)))
+    val in = Iteratee.foreach[JsValue] { msg =>
+      val h:JsValue =  msg.\("h")
+      val v:JsValue =  msg.\("v")
+      val token:JsValue =  msg.\("token")
+      Logger.debug(msg.toString())
+      SecureSocial.currentUser(request) match {
+        case Some(user) => {
+          if(isGistOwner(id, user)) {
+            Logger.debug("message will be sending")
+            controlsChannel.push(JsObject(Seq("id"->JsString(id), "h"->h, "v"->v)))
+          }
+        }
+      }
     }
     (in, controlsStream)
+  }
+
+  /**
+   * Function to know if the user is the owner of the presentation id.
+   *
+   * @param id
+   * @param user
+   * @return
+   */
+  def isGistOwner(id:String, user:securesocial.core.Identity): Boolean = {
+    val value :Future[Boolean] = user.oAuth2Info match {
+      case Some(oAuthInfo2) => {
+        val futureResp: Future[Response] = WS.url("https://api.github.com/gists/" + id + "?token=" + oAuthInfo2.accessToken).get()
+        futureResp.map { response =>
+          if(response.status == 200){
+            val owner = response.json.\("user").\("id")
+            Logger.debug("Owner of the gist is " + owner)
+            Logger.debug("Current user is " + user.id.id)
+            if(owner.toString() == user.id.id.toString()){
+              Logger.debug("isGistOwner is true")
+              true
+            }
+            else{
+              Logger.debug("isGistOwner is false")
+              false
+            }
+          }
+          else {
+            Logger.debug("isGistOwner is false")
+            false
+          }
+        }
+      }
+      case None => Future(false)
+    }
+    Await.result(value, 10 seconds)
   }
 }
