@@ -1,44 +1,80 @@
-body {
+html {
+    height:100%;
 
-  padding-top: 40px;
-  h2{text-align: center;}
-  a i {cursor:pointer;}
+    body {
 
-  #user-menu {
-    float: right;
-    .dropdown {
-      .dropdown-toggle {
-        img {
-          max-width: 25px;
+        padding-top: 40px;
+        height:100%;
+
+        h2{text-align: center;}
+        a i {cursor:pointer;}
+
+        #user-menu {
+            float: right;
+                .dropdown {
+                .dropdown-toggle {
+                    img {
+                        max-width: 25px;
+                    }
+                }
+            }
         }
-      }
+
+        alert {
+
+            h4 {
+                display: inline;
+            }
+
+        }
+
+        #content {
+            background-color: #FFFFFF;
+            border-radius: 0 0 6px 6px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+            margin: -20px auto 20px;
+            padding: 20px;
+            height:100%;
+
+            > div {
+                height:100%;
+            }
+
+            .hero-unit h1 {font-size: 50px;margin-bottom: 30px;}
+
+            textarea.boxEdit {
+                width:100%;
+            }
+
+            div.colLeft {
+                width:49%;
+                height:100%;
+                float:left;
+
+                .codeArea {
+                    height:50%;
+                    div.CodeMirror {
+                        height:100%;
+                    }
+                }
+            }
+
+            div.colRight {
+                width:50%;
+                height:100%;
+                float:left;
+                height:100%;
+
+                iframe {
+                    width:100%;
+                    height:100%;
+                }
+            }
+        }
+
+        footer{
+            * { text-align: center; }
+        }
+
     }
-  }
-
-  .alert {
-
-    h4 {
-        display: inline;
-    }
-
-  }
-
-  #content {
-    background-color: #FFFFFF;
-    border-radius: 0 0 6px 6px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-    margin: -20px auto 20px;
-    padding: 20px;
-
-    .hero-unit h1 {font-size: 50px;margin-bottom: 30px;}
-
-    textarea.boxEdit {
-        width:100%;
-    }
-  }
-
-  footer{
-    * { text-align: center; }
-  }
-
 }

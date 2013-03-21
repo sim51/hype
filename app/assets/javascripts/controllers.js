@@ -58,13 +58,10 @@ var PrezEditCtrl = ['$scope', '$routeParams', '$timeout', 'Github', function ($s
     });
     $scope.$watch('css + prez', function(newValue, oldValue){
         console.log("change !!!");
-        $timeout(function () {
-            var ifrm = document.getElementById('preview');
-            ifrm = (ifrm.contentWindow) ? ifrm.contentWindow : (ifrm.contentDocument.document) ? ifrm.contentDocument.document : ifrm.contentDocument;
-            ifrm.document.open();
-            ifrm.document.write($scope.prez);
-            ifrm.document.close();
-        }, 1000);
-
+        var ifrm = document.getElementById('preview');
+        ifrm = (ifrm.contentWindow) ? ifrm.contentWindow : (ifrm.contentDocument.document) ? ifrm.contentDocument.document : ifrm.contentDocument;
+        ifrm.document.open();
+        ifrm.document.write($scope.prez);
+        ifrm.document.close();
     })
 }];

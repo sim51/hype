@@ -1,13 +1,12 @@
-<div class="row-fluid">
-    <div class="span6">
-        <div class="codeArea">
-            <textarea ui-codemirror="{theme:'monokai', mode:'text/html', tabMode: 'indent', autoCloseBrackets: true, autoCloseTags: true}" ng-model="prez"></textarea>
-        </div>
-        <div class="codeArea">
-            <textarea ui-codemirror="{theme:'monokai', tabMode: 'indent', mode:'css', autoCloseBrackets: true}" ng-model="css"></textarea>
-        </div>
+<div class="colLeft">
+    <div class="codeArea">
+        <textarea ui-codemirror="{theme:'monokai', mode:'text/html', tabMode: 'indent', autoCloseBrackets: true, autoCloseTags: true, lineWrapping: true}" ng-model="prez"></textarea>
     </div>
-    <div class="span6">
-        <iframe id="preview" frameBorder="0" ></iframe>
+    <div class="codeArea">
+        <textarea ui-codemirror="{theme:'monokai', tabMode: 'indent', mode:'css', autoCloseBrackets: true, lineWrapping: true}" ng-model="css"></textarea>
     </div>
 </div>
+<div class="colRight">
+    <iframe id="preview" frameBorder="0" ></iframe>
+</div>
+<br style="clear:both" />
