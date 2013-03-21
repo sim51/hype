@@ -34,7 +34,15 @@ html {
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
             margin: -20px auto 20px;
             padding: 20px;
+            padding-left: 0;
+            padding-right: 0;
             height:100%;
+            overflow-y:auto;
+
+            #innercontent{
+                padding-left: 20px;
+                padding-right: 20px;
+            }
 
             > div {
                 height:100%;
@@ -47,8 +55,8 @@ html {
             }
 
             div.colLeft {
-                width:49%;
-                height:100%;
+                width:50%;
+                height:95%;
                 float:left;
 
                 .codeArea {
@@ -61,9 +69,8 @@ html {
 
             div.colRight {
                 width:50%;
-                height:100%;
+                height:95%;
                 float:left;
-                height:100%;
 
                 iframe {
                     width:100%;

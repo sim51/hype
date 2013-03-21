@@ -1,40 +1,42 @@
-<div class="alert alert-success" ng-show="success">
-    <button type="button" class="close" ng-click="success=false">&times;</button>
-    <h4>{{i18n('success')}}</h4>
-    {{i18n('success.createprez')}}
-</div>
-<div class="page-header">
-    <h1>{{i18n('page.profile.title')}}</h1>
-</div>
-<div class="row-fluid">
-    <div class="span6">
-        <h2>{{i18n('page.profile.presentations.title')}}</h2>
-        <pagination data="presentations" sorting-order="updated"></pagination>
+<div id="innercontent">
+    <div class="alert alert-success" ng-show="success">
+        <button type="button" class="close" ng-click="success=false">&times;</button>
+        <h4>{{i18n('success')}}</h4>
+        {{i18n('success.createprez')}}
     </div>
-    <div class="span6">
-        <h2>{{i18n('page.profile.create.title')}}</h2>
-        <form name="prez" class="form-horizontal" accept-charset="utf-8" ng-submit="create()">
-            <div class="control-group ">
-                <label for="public" class="control-label">{{i18n('page.profile.public')}}</label>
-                <div class="controls">
-                    <input class="input-xxlarge" type="checkbox" id="public" ng-model="isPublic">
+    <div class="page-header">
+        <h1>{{i18n('page.profile.title')}}</h1>
+    </div>
+    <div class="row-fluid">
+        <div class="span6">
+            <h2>{{i18n('page.profile.presentations.title')}}</h2>
+            <pagination data="presentations" sorting-order="updated"></pagination>
+        </div>
+        <div class="span6">
+            <h2>{{i18n('page.profile.create.title')}}</h2>
+            <form name="prez" class="form-horizontal" accept-charset="utf-8" ng-submit="create()">
+                <div class="control-group ">
+                    <label for="public" class="control-label">{{i18n('page.profile.public')}}</label>
+                    <div class="controls">
+                        <input class="input-xxlarge" type="checkbox" id="public" ng-model="isPublic">
+                    </div>
                 </div>
-            </div>
-            <div class="control-group ">
-                <label for="name" class="control-label">{{i18n('page.profile.name')}}<span class="required">*</span></label>
-                <div class="controls">
-                    <input class="input-xxlarge" type="text" placeholder="{{i18n('page.profile.name.placeholder')}}" id="name" ng-model="name" required>
+                <div class="control-group ">
+                    <label for="name" class="control-label">{{i18n('page.profile.name')}}<span class="required">*</span></label>
+                    <div class="controls">
+                        <input class="input-xxlarge" type="text" placeholder="{{i18n('page.profile.name.placeholder')}}" id="name" ng-model="name" required>
+                    </div>
                 </div>
-            </div>
-            <div class="control-group ">
-                <label for="message" class="control-label">{{i18n('page.profile.description')}}<span class="required">*</span></label>
-                <div class="controls">
-                    <textarea rows="10" class="input-xxlarge" id="message" ng-model="message" required></textarea>
+                <div class="control-group ">
+                    <label for="message" class="control-label">{{i18n('page.profile.description')}}<span class="required">*</span></label>
+                    <div class="controls">
+                        <textarea rows="10" class="input-xxlarge" id="message" ng-model="message" required></textarea>
+                    </div>
                 </div>
-            </div>
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary" ng-disabled="!prez.$valid">{{i18n('page.profile.create')}}</button>
-            </div>
-        </form>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" ng-disabled="!prez.$valid">{{i18n('page.profile.create')}}</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

@@ -1,8 +1,10 @@
-<div class="page-header">
-    <h1>{{$rootScope.error.title)}}</h1>
-</div>
-<div class="row-fluid">
-    <div class="span12">
-        <div ng-bind-html-unsafe="$rootScope.error.cause"></div>
+<div id="innercontent">
+    <div class="page-header">
+        <h1>{{$rootScope.error.title)}}</h1>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div ng-bind-html-unsafe="$rootScope.error.cause"></div>
+        </div>
     </div>
 </div>

@@ -1,44 +1,46 @@
-<div class="alert alert-warning" ng-show="warning">
-    <button type="button" class="close" ng-click="warning=false">&times;</button>
-    <h4>{{i18n('warning')}}</h4>
-    {{i18n('warning.sendmail')}} <span countdown="countdown"></span>
-</div>
-<div class="alert alert-success" ng-show="success">
-    <button type="button" class="close" ng-click="success=false">&times;</button>
-    <h4>{{i18n('success')}}</h4>
-    {{i18n('success.sendmail')}}
-</div>
-
-<div class="page-header">
-    <h1>{{i18n('page.contact.title')}}</h1>
-</div>
-<div class="row-fluid">
-    <div class="span4">
-        <div ng-bind-html-unsafe="i18n('page.contact.text')"></div>
+<div id="innercontent">
+    <div class="alert alert-warning" ng-show="warning">
+        <button type="button" class="close" ng-click="warning=false">&times;</button>
+        <h4>{{i18n('warning')}}</h4>
+        {{i18n('warning.sendmail')}} <span countdown="countdown"></span>
     </div>
-    <div class="span8">
-        <form name="contact" class="form-horizontal" accept-charset="utf-8" ng-submit="sendMail()">
-            <div class="control-group ">
-                <label for="name" class="control-label">{{i18n('page.contact.author')}}<span class="required">*</span></label>
-                <div class="controls">
-                    <input class="input-xxlarge" type="text" placeholder="{{i18n('page.contact.author.placeholder')}}" id="name" ng-model="name" required>
+    <div class="alert alert-success" ng-show="success">
+        <button type="button" class="close" ng-click="success=false">&times;</button>
+        <h4>{{i18n('success')}}</h4>
+        {{i18n('success.sendmail')}}
+    </div>
+
+    <div class="page-header">
+        <h1>{{i18n('page.contact.title')}}</h1>
+    </div>
+    <div class="row-fluid">
+        <div class="span4">
+            <div ng-bind-html-unsafe="i18n('page.contact.text')"></div>
+        </div>
+        <div class="span8">
+            <form name="contact" class="form-horizontal" accept-charset="utf-8" ng-submit="sendMail()">
+                <div class="control-group ">
+                    <label for="name" class="control-label">{{i18n('page.contact.author')}}<span class="required">*</span></label>
+                    <div class="controls">
+                        <input class="input-xxlarge" type="text" placeholder="{{i18n('page.contact.author.placeholder')}}" id="name" ng-model="name" required>
+                    </div>
                 </div>
-            </div>
-            <div class="control-group ">
-                <label for="email" class="control-label">{{i18n('page.contact.mail')}}<span class="required">*</span></label>
-                <div class="controls">
-                    <input class="input-xxlarge" type="email" placeholder="{{i18n('page.contact.mail.placeholder')}}" id="email" ng-model="email" required>
+                <div class="control-group ">
+                    <label for="email" class="control-label">{{i18n('page.contact.mail')}}<span class="required">*</span></label>
+                    <div class="controls">
+                        <input class="input-xxlarge" type="email" placeholder="{{i18n('page.contact.mail.placeholder')}}" id="email" ng-model="email" required>
+                    </div>
                 </div>
-            </div>
-            <div class="control-group ">
-                <label for="message" class="control-label">{{i18n('page.contact.message')}}<span class="required">*</span></label>
-                <div class="controls">
-                    <textarea rows="10" class="input-xxlarge" id="message" ng-model="message" required></textarea>
+                <div class="control-group ">
+                    <label for="message" class="control-label">{{i18n('page.contact.message')}}<span class="required">*</span></label>
+                    <div class="controls">
+                        <textarea rows="10" class="input-xxlarge" id="message" ng-model="message" required></textarea>
+                    </div>
                 </div>
-            </div>
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary" ng-disabled="!contact.$valid">{{i18n('page.contact.send')}}</button>
-            </div>
-        </form>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" ng-disabled="!contact.$valid">{{i18n('page.contact.send')}}</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
