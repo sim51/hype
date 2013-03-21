@@ -1,7 +1,7 @@
 'use strict';
 
 /* List all necessary angular module for the application */
-var app = angular.module('hype', ['ngCookies', 'github', 'play', 'directives']);
+var app = angular.module('hype', ['ngCookies', 'github', 'play', 'directives','ui']);
 
 /* Configure the application with the route */
 app.config(function($routeProvider) {
@@ -9,7 +9,7 @@ app.config(function($routeProvider) {
             .when('/', {templateUrl:'/assets/javascripts/angularJS/partials/home.html', controller: HomeCtrl})
             .when('/contact', {templateUrl:'/assets/javascripts/angularJS/partials/contact.html', controller: ContactCtrl})
             .when('/profile', {templateUrl:'/assets/javascripts/angularJS/partials/profile.html', controller: ProfileCtrl})
-            .when('/prez/edit:id', {templateUrl:'/assets/javascripts/angularJS/partials/edit.html', controller: PrezEditCtrl})
+            .when('/prez/:id', {templateUrl:'/assets/javascripts/angularJS/partials/edit.html', controller: PrezEditCtrl})
 			.when('/error', {templateUrl: '/assets/javascripts/angularJS/partials/error.html', controller: ErrorCtrl})
 	      	.otherwise({redirectTo: '/'});
 });
@@ -40,6 +40,6 @@ app.run(function($rootScope, $cookieStore, $cookies, $location, Play){
         $rootScope.token=$cookieStore.get('token').replace(/"/g,'');
         console.log("[MAIN] user is authenticate with token: " + $rootScope.token);
         // we redirect the user to its page
-        $location.path("/profile");
+        // $location.path("/profile");
     }
 });

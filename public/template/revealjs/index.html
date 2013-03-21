@@ -95,7 +95,7 @@
         Reveal.initialize({
             controls: true,
             progress: true,
-            history: true,
+            history: false, // don't set to true if you want to edit your prez with hype, because it reload the iframe
             center: true,
             theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
             transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
@@ -114,9 +114,8 @@
         });
     </script>
 
-    <!-- DO NOT REMOVE LINES ABOVE, IT HELP TO INJECT SOME JS CODE FOR WEBSCOKET-->
-    <script type="text/javascript">
-        ###HYPE_INJECTION_CODE###
+    <!-- DO NOT REMOVE THE LINE ABOVE, IT HELP TO INJECT SOME JS CODE FOR WEBSCOKET-->
+    <!-- ###HYPE_INJECTION_CODE### -->
     </script>
 </body>
 </html>

@@ -142,7 +142,7 @@ object Application extends Controller with securesocial.core.SecureSocial {
     Async {
       WS.url("https://gist.github.com/raw/" + id + "/" + filename).get().map { response =>
         if (response.status == 200){
-          Ok(views.html.prez.see(response.body.replace("###HYPE_INJECTION_CODE###", "")))
+          Ok(views.html.prez.see(response.body.replace("<!-- ###HYPE_INJECTION_CODE### -->", "")))
         }
         else{
           NotFound("Oups !!!")
@@ -163,8 +163,8 @@ object Application extends Controller with securesocial.core.SecureSocial {
         if (response.status == 200){
           val is = Application.getClass().getResourceAsStream("/public/template/revealjs/ws-see.js")
           val src = Source.fromInputStream(is)
-          val js = src.mkString.replace("###ID###",id).replace("###DOMAIN###", request.host)
-          Ok(views.html.prez.see(response.body.replace("###HYPE_INJECTION_CODE###", js)))
+          val js = "<script type=\"text/javascript\">" + src.mkString.replace("###ID###",id).replace("###DOMAIN###", request.host) + "</script>"
+          Ok(views.html.prez.see(response.body.replace("<!-- ###HYPE_INJECTION_CODE### -->", js)))
         }
         else{
           NotFound("Oups !!!")
@@ -187,8 +187,8 @@ object Application extends Controller with securesocial.core.SecureSocial {
           if (response.status == 200){
             val is = Application.getClass().getResourceAsStream("/public/template/revealjs/ws-run.js")
             val src = Source.fromInputStream(is)
-            val js = src.mkString.replace("###ID###",id).replace("###DOMAIN###", request.host)
-            Ok(views.html.prez.see(response.body.replace("###HYPE_INJECTION_CODE###", js)))
+            val js = "<script type=\"text/javascript\">" + src.mkString.replace("###ID###",id).replace("###DOMAIN###", request.host) + "</script>"
+            Ok(views.html.prez.see(response.body.replace("<!-- ###HYPE_INJECTION_CODE### -->", js)))
           }
           else{
             NotFound("Oups !!!")
@@ -211,7 +211,6 @@ object Application extends Controller with securesocial.core.SecureSocial {
     val in = Iteratee.foreach[JsValue] { msg =>
       val h:JsValue =  msg.\("h")
       val v:JsValue =  msg.\("v")
-      val token:JsValue =  msg.\("token")
       Logger.debug(msg.toString())
       SecureSocial.currentUser(request) match {
         case Some(user) => {

@@ -50,6 +50,19 @@ var ProfileCtrl = ['$scope', 'Github', 'Play', function ($scope, Github, Play) {
     }
 }];
 
-var PrezEditCtrl = ['$scope', 'Github', function ($scope, Github) {
+var PrezEditCtrl = ['$scope', '$routeParams', 'Github', function ($scope, $routeParams, Github) {
+    var id = $routeParams.id;
+    Github.get(id).then(function(data){
+       $scope.css = data['css'];
+       $scope.prez = data['html'];
+    });
+    $scope.$watch('css + prez', function(newValue, oldValue){
+        console.log("change !!!");
+        var ifrm = document.getElementById('preview');
+        ifrm = (ifrm.contentWindow) ? ifrm.contentWindow : (ifrm.contentDocument.document) ? ifrm.contentDocument.document : ifrm.contentDocument;
+        ifrm.document.open();
+        ifrm.document.write($scope.prez);
+        ifrm.document.close();
 
+    })
 }];

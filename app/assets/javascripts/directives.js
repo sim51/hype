@@ -107,7 +107,7 @@ angular.module('directives', [])
                     scope.search();
                 };
                 scope.edit = function(id){
-                    $location.path('/prez/edit' + id);
+                    $location.path('/prez/' + id);
                 }
 
                 // Let's watch the data & do the job baby

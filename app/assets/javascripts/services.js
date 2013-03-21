@@ -5,15 +5,16 @@ var playurl = 'http://localhost:9000';
 var SUCCESS=true
 
 var gistToprez = function(gist){
+    var prezName = Object.keys(gist.files)[0].replace(/(.html|.css)/g,'');
      return {
                  id: gist.id,
                  url: gist.url,
-                 name: Object.keys(gist.files)[0], // look if there is more than one files, which is prez (the first created)
+                 name: prezName,
                  description: gist.description.replace(/#hype/g, '').replace(/\n/g, "<br/>"),
                  updated: gist.updated_at,
                  created: gist.created_at,
                  githuburl : gist.html_url,
-                 rawurl : gist.files[Object.keys(gist.files)[0]].raw_url
+                 rawurl : gist.files[prezName + '.html'].raw_url
             }
 };
 
@@ -23,19 +24,6 @@ angular.module('github', [ ])
     .factory('Github', function($http, $location, $rootScope){
         var token = $rootScope.token;
         return {
-            user:function(owner){
-                var url = githuburl + '/user/' + user + '/gists?callback=JSON_CALLBACK&access_token=' + token;
-                return $http.jsonp( url )
-                    .then(function (response){
-                        if( response.status == 200 && response.data.meta.status == 200){
-                            return response.data.data;
-                        }else{
-                            $rootScope.error.title = i18n('error.github');
-                            $rootScope.error.cause = i18n('error.case') + response.data.data.message;
-                            $location.path('/error');
-                        }
-                    });
-            },
             list:function(owner){
                 var url = githuburl + '/gists?callback=JSON_CALLBACK&access_token=' + token;
                 return $http.jsonp( url )
@@ -66,8 +54,22 @@ angular.module('github', [ ])
                 return $http.jsonp( url )
                     .then(function (response){
                         if( response.status == 200 && response.data.meta.status == 200){
-                            //TODO
-                            return null;
+                            var map = [];
+                            var gist = response.data.data;
+                            var el = document.createElement( 'div' );
+                            // construct the map
+
+                            for ( var i=0; i< Object.keys(gist.files).length; i++ ){
+                                var key = Object.keys(gist.files)[i];
+                                if ( gist.files[key].filename.endsWith('.html') ){
+                                    map['html'] = gist.files[key].content;
+                                }
+                                if ( gist.files[key].filename.endsWith('.css') ){
+                                    map['css'] = gist.files[key].content;
+                                }
+
+                            }
+                            return map;
                         }else{
                         	$rootScope.error.title = i18n('error.github');
                             $rootScope.error.cause = i18n('error.case') + response.data.data.message;
@@ -84,38 +86,12 @@ angular.module('github', [ ])
                         'public': isPublic,
                         'files': {}
                         };
+                prez.files[name + '.css'] = {type: "text/css", content: "@charset \"UTF-8\";"}; // adding file with good name !
                 prez.files[name + '.html'] = {type: "text/html", content: template}; // adding file with good name !
                 return $http.post( url, prez)
                     .then(function (response){
                         if( response.status == 201){
                             return gistToprez(response.data);
-                        }else{
-                        	$rootScope.error.title = i18n('error.github');
-                            $rootScope.error.cause = i18n('error.case') + response.data.data.message;
-                            $location.path('/error');
-                        }
-                    });   
-            },
-            save:function(owner, repo, sha){
-                var url = githuburl + '/repos/' + owner + '/' + repo  + '/commits?per_page=100&callback=JSON_CALLBACK&access_token=' + token;
-                return $http.jsonp( url, {cache:true} )
-                    .then(function (response){
-                        if( response.status == 200 && response.data.meta.status == 200){
-                            //TODO
-                            return null;
-                        }else{
-                            $rootScope.error.title = i18n('error.github');
-                            $rootScope.error.cause = i18n('error.case') + response.data.data.message;
-                            $location.path('/error');
-                        }
-                    });   
-            },
-            comments:function(owner, repo){
-                var url = githuburl + '/repos/' + owner + '/' + repo  + '/collaborators?callback=JSON_CALLBACK&access_token=' + token;
-                return $http.jsonp( url, {cache:true} )
-                    .then(function (response){
-                        if( response.status == 200 && response.data.meta.status == 200){
-                            return response.data.data;
                         }else{
                         	$rootScope.error.title = i18n('error.github');
                             $rootScope.error.cause = i18n('error.case') + response.data.data.message;
