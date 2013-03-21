@@ -50,7 +50,7 @@ var ProfileCtrl = ['$scope', 'Github', 'Play', function ($scope, Github, Play) {
     }
 }];
 
-var PrezEditCtrl = ['$scope', '$routeParams', 'Github', function ($scope, $routeParams, Github) {
+var PrezEditCtrl = ['$scope', '$routeParams', '$timeout', 'Github', function ($scope, $routeParams, $timeout, Github) {
     var id = $routeParams.id;
     Github.get(id).then(function(data){
        $scope.css = data['css'];
@@ -58,11 +58,13 @@ var PrezEditCtrl = ['$scope', '$routeParams', 'Github', function ($scope, $route
     });
     $scope.$watch('css + prez', function(newValue, oldValue){
         console.log("change !!!");
-        var ifrm = document.getElementById('preview');
-        ifrm = (ifrm.contentWindow) ? ifrm.contentWindow : (ifrm.contentDocument.document) ? ifrm.contentDocument.document : ifrm.contentDocument;
-        ifrm.document.open();
-        ifrm.document.write($scope.prez);
-        ifrm.document.close();
+        $timeout(function () {
+            var ifrm = document.getElementById('preview');
+            ifrm = (ifrm.contentWindow) ? ifrm.contentWindow : (ifrm.contentDocument.document) ? ifrm.contentDocument.document : ifrm.contentDocument;
+            ifrm.document.open();
+            ifrm.document.write($scope.prez);
+            ifrm.document.close();
+        }, 1000);
 
     })
 }];
