@@ -1,12 +1,15 @@
 'use strict';
 
-var githuburl = 'https://api.github.com';
-var playurl = 'http://localhost:9000';
-var SUCCESS=true
-
-var gistToprez = function(gist){
-    var prezName = Object.keys(gist.files)[0].replace(/(.html|.css)/g,'');
-     return {
+/* Services */
+angular.module('Hype', [])
+    .value('Config', {
+        githuburl : 'https://api.github.com',
+        SUCCES : 'TRUE'
+    })
+    .value('Common', {
+        gistToprez : function(gist){
+            var prezName = Object.keys(gist.files)[0].replace(/(.html|.css)/g,'');
+            return {
                  id: gist.id,
                  url: gist.url,
                  name: prezName,
@@ -16,16 +19,16 @@ var gistToprez = function(gist){
                  githuburl : gist.html_url,
                  rawurl : gist.files[prezName + '.html'].raw_url
             }
-};
+        }
+    });
 
-/* Services */
-angular.module('github', [ ])
+angular.module('github', ['Hype' ])
     /* Github gists securesocial*/
-    .factory('Github', function($http, $location, $rootScope){
+    .factory('Github', function($http, $location, $rootScope, Config, Common ){
         var token = $rootScope.token;
         return {
             list:function(owner){
-                var url = githuburl + '/gists?callback=JSON_CALLBACK&access_token=' + token;
+                var url = Config.githuburl + '/gists?callback=JSON_CALLBACK&access_token=' + token;
                 return $http.jsonp( url )
                     .then(function (response){
                         if( response.status == 200 && response.data.meta.status == 200){
@@ -40,7 +43,7 @@ angular.module('github', [ ])
                                 }
                             });
                             // construct a list of presentation model : [id, url, name, description, updated, created ]
-                            var prez = _.map(gistsPrez, gistToprez);
+                            var prez = _.map(gistsPrez, Common.gistToprez);
                             return prez;
                         }else{
                             $rootScope.error.title = i18n('error.github');
@@ -50,7 +53,7 @@ angular.module('github', [ ])
                     });
             },
             get:function(id){
-                var url = githuburl + '/gists/' + id + '?callback=JSON_CALLBACK&access_token=' + token;
+                var url = Config.githuburl + '/gists/' + id + '?callback=JSON_CALLBACK&access_token=' + token;
                 return $http.jsonp( url )
                     .then(function (response){
                         if( response.status == 200 && response.data.meta.status == 200){
@@ -78,7 +81,7 @@ angular.module('github', [ ])
                     });   
             },
             create:function(name, description, isPublic, template){
-                var url = githuburl + '/gists?access_token=' + token;
+                var url = Config.githuburl + '/gists?access_token=' + token;
                 template = template.replace(/__name__/g, name);
                 template = template.replace(/__description__/g, description);
                 var prez = {
