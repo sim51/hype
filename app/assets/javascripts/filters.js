@@ -12,4 +12,10 @@ angular.module('filter', [])
         return function(key) {
             return $rootScope.messages[key];
         };
+    })
+    .filter('date', function() {
+        return function(date) {
+            var date = new Date(Date.parse(date));
+            return date.toLocaleDateString();
+        };
     });

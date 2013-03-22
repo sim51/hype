@@ -17,16 +17,11 @@ app.config(function($routeProvider) {
 /* What we do when application start ? */
 app.run(function($rootScope, $cookieStore, $cookies, $location, Play){
     console.log("[MAIN] Application start");
+
     // loading i18n properties
     Play.messages().then(function(data){
         $rootScope.messages = data;
     });
-
-    // format date
-    $rootScope.formatDate = function( date1 ) {
-        var date = new Date(Date.parse( date1 ));
-        return date.toLocaleDateString();
-    }
 
     // we look at cookies to know user is logged
     if ( $cookies['token'] ) {

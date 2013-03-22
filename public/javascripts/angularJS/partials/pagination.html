@@ -40,8 +40,8 @@
             <tr ng-repeat="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
                 <td>{{item.name}}</td>
                 <td ng-bind-html-unsafe="item.description"></td>
-                <td>{{formatDate(item.created)}}</td>
-                <td>{{formatDate(item.updated)}}</td>
+                <td>{{item.created|date}}</td>
+                <td>{{item.updated|date}}</td>
                 <td class="action">
                     <a ng-click="edit(item.id)" target="_blank" title="{{'prez.action.edit'|i18n}}"><i class="icon-pencil"></i></a>
                     <a href="/prez/view/{{item.id}}/{{item.name}}" target="_blank" title="{{'prez.action.view'|i18n}}"><i class="icon-eye-open"></i></i></a>
