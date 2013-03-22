@@ -103,11 +103,10 @@ angular.module('github', [ ])
     });
 
 angular.module('play', [ ])
-    /* Github gists securesocial*/
     .factory('Play', function($http, $location, $rootScope){
         return {
             messages:function(){
-                var url = playurl + '/api/messages';
+                var url = '/api/messages';
                 return $http.get( url )
                     .then(function (response){
                         if( response.status == 200 ){
@@ -120,7 +119,7 @@ angular.module('play', [ ])
                     });
             },
             token:function(){
-                var url = playurl + '/api/token';
+                var url = '/api/token';
                 return $http.get( url ).then(function (response){
                     if( response.status == 200 ){
                         return response.data.replace(/"/g, '');
@@ -132,8 +131,8 @@ angular.module('play', [ ])
                 });
             },
             sendMail:function(name, email, message, token){
-                console.log("[Play|sendMail] Name:" + name + ", email:" + email +", message:" + message +", token:"+token)
-                var url = playurl +'/api/mail'
+                console.log("[Play|sendMail] Name:" + name + ", email:" + email +", message:" + message +", token:"+token);
+                var url = '/api/mail';
                 var data = "name="+ name +"&email=" + email +"&message=" + message + "&token=" + token;
                 $http({
                     method: 'POST',
@@ -157,7 +156,7 @@ angular.module('play', [ ])
                 })
             },
             template:function(name, description){
-                var url = playurl +'/api/template'
+                var url = '/api/template';
                 return $http.get( url ).then(function (response){
                     if( response.status == 200 ){
                         var template = response.data;
