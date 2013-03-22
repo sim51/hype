@@ -57,11 +57,13 @@ var PrezEditCtrl = ['$scope', '$routeParams', '$timeout', 'Github', function ($s
        $scope.prez = data['html'];
     });
     $scope.$watch('css + prez', function(newValue, oldValue){
-        console.log("change !!!");
-        var ifrm = document.getElementById('preview');
-        ifrm = (ifrm.contentWindow) ? ifrm.contentWindow : (ifrm.contentDocument.document) ? ifrm.contentDocument.document : ifrm.contentDocument;
-        ifrm.document.open();
-        ifrm.document.write($scope.prez);
-        ifrm.document.close();
+        if (newValue != oldValue) {
+            console.log("change !!!");
+            var ifrm = document.getElementById('preview');
+            ifrm = (ifrm.contentWindow) ? ifrm.contentWindow : (ifrm.contentDocument.document) ? ifrm.contentDocument.document : ifrm.contentDocument;
+            ifrm.document.open();
+            ifrm.document.write($scope.prez);
+            ifrm.document.close();
+        }
     })
 }];

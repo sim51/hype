@@ -1,40 +1,40 @@
 <div id="innercontent">
     <div class="alert alert-success" ng-show="success">
         <button type="button" class="close" ng-click="success=false">&times;</button>
-        <h4>{{i18n('success')}}</h4>
-        {{i18n('success.createprez')}}
+        <h4>{{'success'|i18n}}</h4>
+        {{'success.createprez'|i18n}}
     </div>
     <div class="page-header">
-        <h1>{{i18n('page.profile.title')}}</h1>
+        <h1>{{'page.profile.title'|i18n}}</h1>
     </div>
     <div class="row-fluid">
         <div class="span6">
-            <h2>{{i18n('page.profile.presentations.title')}}</h2>
+            <h2>{{'page.profile.presentations.title'|i18n}}</h2>
             <pagination data="presentations" sorting-order="updated"></pagination>
         </div>
         <div class="span6">
-            <h2>{{i18n('page.profile.create.title')}}</h2>
+            <h2>{{'page.profile.create.title'|i18n}}</h2>
             <form name="prez" class="form-horizontal" accept-charset="utf-8" ng-submit="create()">
                 <div class="control-group ">
-                    <label for="public" class="control-label">{{i18n('page.profile.public')}}</label>
+                    <label for="public" class="control-label">{{'page.profile.public'|i18n}}</label>
                     <div class="controls">
                         <input class="input-xxlarge" type="checkbox" id="public" ng-model="isPublic">
                     </div>
                 </div>
                 <div class="control-group ">
-                    <label for="name" class="control-label">{{i18n('page.profile.name')}}<span class="required">*</span></label>
+                    <label for="name" class="control-label">{{'page.profile.name'|i18n}}<span class="required">*</span></label>
                     <div class="controls">
-                        <input class="input-xxlarge" type="text" placeholder="{{i18n('page.profile.name.placeholder')}}" id="name" ng-model="name" required>
+                        <input class="input-xxlarge" type="text" placeholder="{{'page.profile.name.placeholder'|i18n}}" id="name" ng-model="name" required>
                     </div>
                 </div>
                 <div class="control-group ">
-                    <label for="message" class="control-label">{{i18n('page.profile.description')}}<span class="required">*</span></label>
+                    <label for="message" class="control-label">{{'page.profile.description'|i18n}}<span class="required">*</span></label>
                     <div class="controls">
                         <textarea rows="10" class="input-xxlarge" id="message" ng-model="message" required></textarea>
                     </div>
                 </div>
                 <div class="form-actions">
-                    <button type="submit" class="btn btn-primary" ng-disabled="!prez.$valid">{{i18n('page.profile.create')}}</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled="!prez.$valid">{{'page.profile.create'|i18n}}</button>
                 </div>
             </form>
         </div>

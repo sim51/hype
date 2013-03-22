@@ -1,7 +1,7 @@
 'use strict';
 
 /* List all necessary angular module for the application */
-var app = angular.module('hype', ['ngCookies', 'github', 'play', 'directives','ui']);
+var app = angular.module('hype', ['ngCookies', 'github', 'play', 'directives', 'filter', 'ui']);
 
 /* Configure the application with the route */
 app.config(function($routeProvider) {
@@ -17,16 +17,10 @@ app.config(function($routeProvider) {
 /* What we do when application start ? */
 app.run(function($rootScope, $cookieStore, $cookies, $location, Play){
     console.log("[MAIN] Application start");
-
-    // we load all i18n key/value from play!
+    // loading i18n properties
     Play.messages().then(function(data){
         $rootScope.messages = data;
-    })
-
-    // i18n helper for templating
-    $rootScope. i18n = function(key){
-        return  $rootScope.messages[key];
-    }
+    });
 
     // format date
     $rootScope.formatDate = function( date1 ) {

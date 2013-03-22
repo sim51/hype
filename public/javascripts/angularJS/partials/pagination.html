@@ -2,7 +2,7 @@
 
     <div class="form-search">
         <div class="input-append">
-            <input type="text" ng-model="query" ng-change="search()" class="input-large search-query" placeholder="{{i18n('search')}}">
+            <input type="text" ng-model="query" ng-change="search()" class="input-large search-query" placeholder="{{'common.search'|i18n}}">
             <span class="add-on btn"><i class="icon-search"></i></span>
         </div>
     </div>
@@ -10,11 +10,11 @@
     <table class="table table-striped table-condensed table-hover">
         <thead>
             <tr>
-                <th class="name">Name&nbsp;<a ng-click="sort_by('name')"><i class="icon-sort"></i></a></th>
-                <th class="description">Description&nbsp;<a ng-click="sort_by('description')"><i class="icon-sort"></i></a></th>
-                <th class="created">Created&nbsp;<a ng-click="sort_by('created')"><i class="icon-sort"></i></a></th>
-                <th class="updated">Updated&nbsp;<a ng-click="sort_by('updated')"><i class="icon-sort"></i></a></th>
-                <th>Action</th>
+                <th class="name">{{'prez.name'|i18n}}&nbsp;<a ng-click="sort_by('name')"><i class="icon-sort"></i></a></th>
+                <th class="description">{{'prez.description'|i18n}}&nbsp;<a ng-click="sort_by('description')"><i class="icon-sort"></i></a></th>
+                <th class="created">{{'prez.created'|i18n}}&nbsp;<a ng-click="sort_by('created')"><i class="icon-sort"></i></a></th>
+                <th class="updated">{{'prez.updated'|i18n}}&nbsp;<a ng-click="sort_by('updated')"><i class="icon-sort"></i></a></th>
+                <th>&nbsp;</th>
             </tr>
         </thead>
         <tfoot>
@@ -22,15 +22,15 @@
                 <div class="pagination pull-right">
                     <ul>
                         <li ng-class="{disabled: currentPage == 0}">
-                            <a href ng-click="prevPage()">«</a>
+                            <a href title="{{'common.previous'|i18n}}" ng-click="prevPage()">«</a>
                         </li>
                         <li ng-repeat="n in range(pagedItems.length)"
                             ng-class="{active: n == currentPage}"
                             ng-click="setPage()">
-                            <a href ng-bind="n + 1">1</a>
+                            <a href title="{{'common.page'|i18n}} {{n +1}}" ng-bind="n + 1">1</a>
                         </li>
                         <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
-                            <a href ng-click="nextPage()">»</a>
+                            <a href title="{{'common.next'|i18n}}" ng-click="nextPage()">»</a>
                         </li>
                     </ul>
                 </div>
@@ -43,11 +43,11 @@
                 <td>{{formatDate(item.created)}}</td>
                 <td>{{formatDate(item.updated)}}</td>
                 <td class="action">
-                    <a ng-click="edit(item.id)" target="_blank" title="Edit"><i class="icon-pencil"></i></a>
-                    <a href="/prez/view/{{item.id}}/{{item.name}}" target="_blank" title="See it into normal mode"><i class="icon-eye-open"></i></i></a>
-                    <a href="/prez/run/{{item.id}}/{{item.name}}" target="_blank" title="See it into prez mode"><i class="icon-play"></i></i></a>
-                    <a href="/prez/see/{{item.id}}/{{item.name}}" target="_blank" title="See it into watcher mode (ie. read only)"><i class="icon-eye-close"></i></i></a>
-                    <a href="{{item.githuburl}}" target="_blank" title="See it on github"><i class="icon-github"></i></a>
+                    <a ng-click="edit(item.id)" target="_blank" title="{{'prez.action.edit'|i18n}}"><i class="icon-pencil"></i></a>
+                    <a href="/prez/view/{{item.id}}/{{item.name}}" target="_blank" title="{{'prez.action.view'|i18n}}"><i class="icon-eye-open"></i></i></a>
+                    <a href="/prez/run/{{item.id}}/{{item.name}}" target="_blank" title="{{'prez.action.run'|i18n}}"><i class="icon-play"></i></i></a>
+                    <a href="/prez/see/{{item.id}}/{{item.name}}" target="_blank" title="{{'prez.action.see'|i18n}}"><i class="icon-eye-close"></i></i></a>
+                    <a href="{{item.githuburl}}" target="_blank" title="{{'prez.action.github'|i18n}}"><i class="icon-github"></i></a>
                 </td>
             </tr>
         </tbody>

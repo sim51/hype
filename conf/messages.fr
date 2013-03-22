@@ -4,8 +4,9 @@ application.name=Hype
 application.baseline=Html yoda presentation experience
 footer.text=<p>Ce projet est sous la <a href="http://www.gnu.org/licenses/gpl.html" title="Licence GPL" target="_blank">GNU General Public Licence (GPL)</a>. Les sources sont hebergees sur <a href="https://github.com/sim51/csvmap" target="_blank">github</a>.<br>&copy; <a href="http://www.bsimard.com">Benoit SImard</a></p>
 search=Rechercher
-prev=Precedent
-next=Suivant
+common.previous=Precedent
+common.next=Suivant
+common.page=Page n°
 
 # PAGE HOME
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -29,7 +30,7 @@ page.contact.mail.placeholder=bsimard@yopmail.com
 page.contact.message=Your message
 page.contact.send=Send !
 
-# PAGE USER PROFILE
+# MY PAGE
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 page.profile=My Page
 page.profile.title=Mon compte
@@ -39,6 +40,18 @@ page.profile.public=Public ?
 page.profile.name=Nom
 page.profile.description=Description
 page.profile.create=Créer !
+
+# PREZ
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+prez.name=Nom
+prez.description=Description
+prez.updated=Modifier le
+prez.created=Créer le
+prez.action.edit=Modifier la présentation
+prez.action.view=Consulter la présentation
+prez.action.run=Démarrer une présentation
+prez.action.readonly=Visionner la présentation (lecture seule)
+prez.action.github=Voir la présentation sur github
 
 # ERROR / SUCCESS / WARNING
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
