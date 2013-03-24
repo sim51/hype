@@ -7,6 +7,8 @@ common.search=Rechercher
 common.previous=Précédent
 common.next=Suivant
 common.page=Page n°
+common.login=Login
+common.logout=Logout
 
 # PAGE HOME
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~

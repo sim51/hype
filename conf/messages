@@ -2,17 +2,19 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 application.name=Hype
 application.baseline=Html yoda presentation experience
-footer.text=<p>Ce projet est sous la <a href="http://www.gnu.org/licenses/gpl.html" title="Licence GPL" target="_blank">GNU General Public Licence (GPL)</a>. Les sources sont hebergees sur <a href="https://github.com/sim51/csvmap" target="_blank">github</a>.<br>&copy; <a href="http://www.bsimard.com">Benoit SImard</a></p>
-common.search=Rechercher
-common.previous=Precedent
-common.next=Suivant
+footer.text=<p>This project is under <a href="http://www.gnu.org/licenses/gpl.html" title="Licence GPL" target="_blank">GNU General Public Licence (GPL)</a>. Source code are on<a href="https://github.com/sim51/hype" target="_blank">Github</a>.<br>&copy; <a href="http://www.bsimard.com">Benoît Simard</a></p>
+common.search=Search
+common.previous=Previous
+common.next=Next
 common.page=Page n°
+common.login=Se connecter
+common.logout=Se déconnecter
 
 # PAGE HOME
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 page.home=Home
 page.home.title=Html yoda presentation experience
-page.home.text=<p>A tools to help you to built HTML presentation with impress.js or reveal.js. You're presentation will be save on your github account as a gist. So your presentation is versioned !</p><p><a class="btn btn-primary btn-large" href="/login">Login with Github</a></p>
+page.home.text=<p>A tools to help you to built HTML presentation with impress.js or reveal.js. You're presentation will be save on your github account as a gist. So your presentation is versioned !</p><p><a class="btn btn-primary btn-large" href="/authenticate/github">Login with Github</a></p>
 page.home.col1.title=Presentation
 page.home.col1.text=<p>Texte of presentation</p>
 page.home.col2.title=Technique stack
@@ -24,7 +26,7 @@ page.contact=Contact
 page.contact.text=<p>If you like this application or you have find a bug , want a new feature or anything else, you can fullfil this form to send me mail.<br/> Don't hesitate !</p>
 page.contact.title=Contact us !
 page.contact.author=Your fullname
-page.contact.author.placeholder=Benoit Simard
+page.contact.author.placeholder=Benoît Simard
 page.contact.mail=Your email
 page.contact.mail.placeholder=bsimard@yopmail.com
 page.contact.message=Your message
@@ -33,25 +35,25 @@ page.contact.send=Send !
 # MY PAGE
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 page.profile=My Page
-page.profile.title=Mon compte
-page.profile.presentations.title=Mes présentations
-page.profile.create.title=Créer une présentations
+page.profile.title=My presentations
+page.profile.presentations.title=My presentations
+page.profile.create.title=Create a presentation
 page.profile.public=Public ?
-page.profile.name=Nom
+page.profile.name=Name
 page.profile.description=Description
-page.profile.create=Créer !
+page.profile.create=Create !
 
 # PREZ
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-prez.name=Nom
+prez.name=Name
 prez.description=Description
-prez.updated=Modifier le
-prez.created=Créer le
-prez.action.edit=Modifier la présentation
-prez.action.view=Consulter la présentation
-prez.action.run=Démarrer une présentation
-prez.action.readonly=Visionner la présentation (lecture seule)
-prez.action.github=Voir la présentation sur github
+prez.updated=Updated
+prez.created=Created
+prez.action.edit=Work on it
+prez.action.view=View it
+prez.action.run=Start it
+prez.action.readonly=See it
+prez.action.github=View it on Github
 
 # ERROR / SUCCESS / WARNING
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~

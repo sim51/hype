@@ -1,8 +1,8 @@
-@(title:String, lang:String, user:Option[securesocial.core.Identity])(content: Html)
+@(title:String, locale:String, user:Option[securesocial.core.Identity])(content: Html)(implicit lang: Lang)
 @import play.api.Play
 @import play.api.Play.current
 <!DOCTYPE html>
-<html lang="@lang" ng-app="hype">
+<html lang="@locale" ng-app="hype">
     <head>
         <title>@title</title>
         <meta charset="utf-8">
@@ -46,12 +46,12 @@
                                         <ul class="dropdown-menu">
                                             <li><a href="/#/profile">@Messages("page.profile")</a></li>
                                             <li class="divider"></li>
-                                            <li><a href="@securesocial.controllers.routes.LoginPage.logout()">Déconnexion</a></li>
+                                            <li><a href="@securesocial.controllers.routes.LoginPage.logout()">@Messages("comon.logout")</a></li>
                                         </ul>
                                     </li>
                                 }
                                 case None => {
-                                    <li><a href='@securesocial.controllers.routes.ProviderController.authenticate("github")'>Login</a></li>
+                                    <li><a href='@securesocial.controllers.routes.ProviderController.authenticate("github")'>@Messages("comon.login")</a></li>
                                 }
                             }
                         </ul>
