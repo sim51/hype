@@ -10,7 +10,13 @@ angular.module('filter', [])
      */
     .filter('i18n', function($rootScope) {
         return function(key) {
-            return $rootScope.messages[key];
+            if($rootScope.messages != 'undefined'){
+                return $rootScope.messages[key];
+            }
+            else{
+                return '';
+            }
+
         };
     })
     .filter('date', function() {
