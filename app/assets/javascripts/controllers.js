@@ -77,8 +77,8 @@ var PrezEditCtrl = ['$scope', '$routeParams', '$timeout', 'Github', 'Common', fu
                 ifrm.document.open();
                 ifrm.document.write(code);
                 ifrm.document.close();
-                ifrm.contentWindow.Reveal.slide(currentSlideIndice.h, currentSlideIndice.v);
-            }, 2000);
+                ifrm.Reveal.slide(currentSlideIndice.h, currentSlideIndice.v);
+            }, 1000);
         }
     });
 }];

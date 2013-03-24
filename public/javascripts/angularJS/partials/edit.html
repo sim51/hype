@@ -1,4 +1,4 @@
-<div class="colLeft">
+<div id="colLeft">
     <div class="codeArea">
         <textarea ui-codemirror="{theme:'monokai', mode:'text/html', tabMode: 'indent', autoCloseBrackets: true, autoCloseTags: true, lineWrapping: true}" ng-model="prez"></textarea>
     </div>
@@ -6,8 +6,7 @@
         <textarea ui-codemirror="{theme:'monokai', tabMode: 'indent', mode:'css', autoCloseBrackets: true, lineWrapping: true}" ng-model="css"></textarea>
     </div>
 </div>
-<div class="colRight">
+<div id="colRight">
     <iframe id="preview" frameBorder="0" ></iframe>
 </div>
 <br style="clear:both" />
-{{timeout}}
