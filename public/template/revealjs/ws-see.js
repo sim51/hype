@@ -12,5 +12,13 @@ var receiveEvent = function(event) {
 }
 socket.onmessage = receiveEvent;
 
+// Reveal read-only mode
+Reveal.configure({mouseWheel:false});
+Reveal.configure({controls:false});
+Reveal.configure({keyboard:false});
+Reveal.removeEventListeners();
+Reveal.addEventListeners();
+
+
 
 
