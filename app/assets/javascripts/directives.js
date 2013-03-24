@@ -128,7 +128,6 @@ angular.module('directives', [])
                         console.log("End countdown for : " + scope.endDate);
                         scope.updateTime();
                     }
-                    scope.endDate = new Date();
 
                 });
 
