@@ -14,7 +14,7 @@ common.logout=Logout
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 page.home=Home
 page.home.title=Html yoda presentation experience
-page.home.text=<p>Un outil vous permettant de créer simplemenA tools to help you to built HTML presentation with impress.js or reveal.js. You're presentation will be save on your github account as a gist. So your presentation is versioned !</p><p><a class="btn btn-primary btn-large" href="/login">Login with Github</a></p>
+page.home.text=<p>Un outil vous permettant de créer simplement une présentation avec Reveal.js. Chaque présentation est enregistrée comme Gist sur votre compte Github.A tools to help you to built HTML presentation with impress.js or reveal.js. You're presentation will be save on your github account as a gist. Donc tout est versionné !</p><p><a class="btn btn-primary btn-large" href="/login">Connecter vous !</a></p>
 page.home.col1.title=Présentation
 page.home.col1.text=<p>Texte of presentation</p>
 page.home.col2.title=La stack technique
