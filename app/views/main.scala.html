@@ -46,12 +46,12 @@
                                         <ul class="dropdown-menu">
                                             <li><a href="/#/profile">@Messages("page.profile")</a></li>
                                             <li class="divider"></li>
-                                            <li><a href="@securesocial.controllers.routes.LoginPage.logout()">@Messages("comon.logout")</a></li>
+                                            <li><a href="@securesocial.controllers.routes.LoginPage.logout()">@Messages("common.logout")</a></li>
                                         </ul>
                                     </li>
                                 }
                                 case None => {
-                                    <li><a href='@securesocial.controllers.routes.ProviderController.authenticate("github")'>@Messages("comon.login")</a></li>
+                                    <li><a href='@securesocial.controllers.routes.ProviderController.authenticate("github")'>@Messages("common.login")</a></li>
                                 }
                             }
                         </ul>
