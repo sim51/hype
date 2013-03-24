@@ -121,13 +121,15 @@ angular.module('directives', [])
         return {
             restrict: 'A',
             link: function(scope, element, attrs) {
-                 console.log(attrs);
-                scope.$watch(attrs.countdown, function(value){
-                    if (value != 'undefined'){
-                        scope.endDate = value;
+                console.log(attrs);
+                scope.$watch(attrs.countdown, function(newValue, oldValue){
+                    if (newValue != oldValue) {
+                        scope.endDate = newValue;
                         console.log("End countdown for : " + scope.endDate);
                         scope.updateTime();
                     }
+                    scope.endDate = 0;
+
                 });
 
                 scope.updateTime = function() {
