@@ -123,9 +123,11 @@ angular.module('directives', [])
             link: function(scope, element, attrs) {
                  console.log(attrs);
                 scope.$watch(attrs.countdown, function(value){
-                    scope.endDate = value;
-                    console.log("End countdown for : " + scope.endDate);
-                    scope.updateTime();
+                    if (value != 'undefined'){
+                        scope.endDate = value;
+                        console.log("End countdown for : " + scope.endDate);
+                        scope.updateTime();
+                    }
                 });
 
                 scope.updateTime = function() {

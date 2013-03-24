@@ -2,9 +2,9 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 application.name=Hype
 application.baseline=Html yoda presentation experience
-footer.text=<p>Ce projet est sous la <a href="http://www.gnu.org/licenses/gpl.html" title="Licence GPL" target="_blank">GNU General Public Licence (GPL)</a>. Les sources sont hebergees sur <a href="https://github.com/sim51/csvmap" target="_blank">github</a>.<br>&copy; <a href="http://www.bsimard.com">Benoit SImard</a></p>
+footer.text=<p>Ce projet est sous la <a href="http://www.gnu.org/licenses/gpl.html" title="Licence GPL" target="_blank">GNU General Public Licence (GPL)</a>. Les sources sont hebergees sur <a href="https://github.com/sim51/hype" target="_blank">github</a>.<br>&copy; <a href="http://www.bsimard.com">Benoit SImard</a></p>
 common.search=Rechercher
-common.previous=Precedent
+common.previous=Précédent
 common.next=Suivant
 common.page=Page n°
 
@@ -12,27 +12,27 @@ common.page=Page n°
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 page.home=Home
 page.home.title=Html yoda presentation experience
-page.home.text=<p>A tools to help you to built HTML presentation with impress.js or reveal.js. You're presentation will be save on your github account as a gist. So your presentation is versioned !</p><p><a class="btn btn-primary btn-large" href="/login">Login with Github</a></p>
-page.home.col1.title=Presentation
+page.home.text=<p>Un outil vous permettant de créer simplemenA tools to help you to built HTML presentation with impress.js or reveal.js. You're presentation will be save on your github account as a gist. So your presentation is versioned !</p><p><a class="btn btn-primary btn-large" href="/login">Login with Github</a></p>
+page.home.col1.title=Présentation
 page.home.col1.text=<p>Texte of presentation</p>
-page.home.col2.title=Technique stack
-page.home.col2.text=<ul><li><a href="http://www.playframework.com" title="Play! framework">Play! framework 2.1</a> for I18N, Authentification, API  & Websocket</li><li><a href="http://www.angularjs.org" title="angular.js">angularJS</a> : to code the client side application !</li></ul>
+page.home.col2.title=La stack technique
+page.home.col2.text=<ul><li><a href="http://www.playframework.com" title="Play! framework">Play! framework 2.1</a>Pour gérer l'internationalisation de l'application, l'authentification à github et les webscokets</li><li><a href="http://www.angularjs.org" title="angular.js">angularJS</a> : Pour toute la partie GUI et les appels ajax à l'API Github.</li></ul>
 
 # PAGE CONTACT
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 page.contact=Contact
-page.contact.text=<p>If you like this application or you have find a bug , want a new feature or anything else, you can fullfil this form to send me mail.<br/> Don't hesitate !</p>
-page.contact.title=Contact us !
-page.contact.author=Your fullname
-page.contact.author.placeholder=Benoit Simard
-page.contact.mail=Your email
+page.contact.text=<p>Si vous apprécier cette aplication, ou si vous avez trouvé un bug, que vous avez une idée d'évolution, ou tout simplement pour dire 'coucou', vous pouvez remplir ce formulaire de contact.<br/> N'hésitez pas !</p>
+page.contact.title=Contacter nous !
+page.contact.author=Votre nom
+page.contact.author.placeholder=Benoît Simard
+page.contact.mail=Votre email
 page.contact.mail.placeholder=bsimard@yopmail.com
-page.contact.message=Your message
-page.contact.send=Send !
+page.contact.message=Votre message
+page.contact.send=Envoyer !
 
 # MY PAGE
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-page.profile=My Page
+page.profile=Ma Page
 page.profile.title=Mon compte
 page.profile.presentations.title=Mes présentations
 page.profile.create.title=Créer une présentations
@@ -55,23 +55,23 @@ prez.action.github=Voir la présentation sur github
 
 # ERROR / SUCCESS / WARNING
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-error=Error
-success=Success
-warning=Warning
-error.cause=Raison is :
+error=Erreur
+success=Succès
+warning=Attention
+error.cause=La raison est :
 # sending email
-error.sendmail=An error occured when email was send
-warning.sendmail=You have 10 minutes to fulfil the form :
-success.sendmail=Done ! An email has been sent.
+error.sendmail=Une erreur est survenue lors de l'envoie de l'email
+warning.sendmail=Vous avez 10 minutes pour remplir le remplir :
+success.sendmail=Votre demande de contact a été envoyé.
 # create prez
-success.createprez=Done ! Your presentation is created.
-success.save=Done! your presentation is created. 
-error.github=An error occured with github API
+success.createprez=Votre présentation vient d'être créé.
+success.save=Sauvgarde effectuée.
+error.github=Une erreur est survenue avec l'API de Github
 
 # SECURE SOCIAL
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 page.login=Login
 securesocial.login.title=Login
-securesocial.login.instructions=Use your github account to login. To do it, just click on the octocat !
-securesocial.login.accessDenied=You denied access to your account. Please grant it to log in.
-securesocial.login.errorLoggingIn=An error occurred while logging you in. Please try again.
+securesocial.login.instructions=Utilisez votre compte Github pour vous authentifier. Vous avez simplement à cliquer sur l'octocat ci-dessous.
+securesocial.login.accessDenied=Votre compte nous a refusé l'accès. S'il vous plait, modifier les paramètre pour nous donner accès.
+securesocial.login.errorLoggingIn=Une erreur est survenue lors de votre authentification. Vous pouvez réessayer.

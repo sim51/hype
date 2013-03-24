@@ -50,6 +50,9 @@ var ProfileCtrl = ['$scope', 'Github', 'Play', function ($scope, Github, Play) {
     }
 }];
 
+/**
+ * Controller to edit a presentation like in jsfiddle.
+ */
 var PrezEditCtrl = ['$scope', '$routeParams', '$timeout', 'Github', 'Common', function ($scope, $routeParams, $timeout, Github, Common) {
     var id = $routeParams.id;
     Github.get(id).then(function(data){
