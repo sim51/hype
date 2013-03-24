@@ -19,6 +19,7 @@ app.run(function($rootScope, $cookieStore, $cookies, $location, Play){
     console.log("[MAIN] Application start");
 
     // loading i18n properties
+    $rootScope.messages = [];
     Play.messages().then(function(data){
         $rootScope.messages = data;
     });
