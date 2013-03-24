@@ -60,8 +60,10 @@ angular.module('github', ['Hype' ])
                             var prez = _.map(gistsPrez, Common.gistToprez);
                             return prez;
                         }else{
-                            $rootScope.error.title = i18n('error.github');
-                            $rootScope.error.cause = i18n('error.case') + response.data.data.message;
+                            $rootScope.error = {
+                                                    title:$rootScope.messages['error.github'],
+                                                    message:$rootScope.messages['error.case'] + response.data.data.message
+                                               };
                             $location.path('/error');
                         }
                     });
@@ -80,6 +82,7 @@ angular.module('github', ['Hype' ])
                                 var key = Object.keys(gist.files)[i];
                                 if ( gist.files[key].filename.indexOf('.html') == (gist.files[key].filename.length -5)){
                                     map['html'] = gist.files[key].content;
+                                    map['name'] = gist.files[key].filename.replace(/.html/g, '');
                                 }
                                 if ( gist.files[key].filename.indexOf('.css') == (gist.files[key].filename.length -4) ){
                                     map['css'] = gist.files[key].content;
@@ -89,8 +92,10 @@ angular.module('github', ['Hype' ])
                             map['html'] = Common.removeCSSFile(map['html'], cssurl);
                             return map;
                         }else{
-                        	$rootScope.error.title = i18n('error.github');
-                            $rootScope.error.cause = i18n('error.case') + response.data.data.message;
+                        	$rootScope.error = {
+                                                    title:$rootScope.messages['error.github'],
+                                                    message:$rootScope.messages['error.case'] + response.data.data.message
+                                               };
                             $location.path('/error');
                         }
                     });   
@@ -111,14 +116,33 @@ angular.module('github', ['Hype' ])
                         if( response.status == 201){
                             return Common.gistToprez(response.data);
                         }else{
-                        	$rootScope.error.title = i18n('error.github');
-                            $rootScope.error.cause = i18n('error.case') + response.data.data.message;
+                        	$rootScope.error = {
+                                                    title:$rootScope.messages['error.github'],
+                                                    message:$rootScope.messages['error.case'] + response.data.data.message
+                                               };
                             $location.path('/error');
                         }
                     });   
             },
-            save: function(){
-
+            save: function(id, name, html, css){
+                var url = Config.githuburl + '/gists/' + id + '?access_token=' + token;
+                var prez = {
+                    'files': {}
+                };
+                prez.files[name + '.css'] = {type: "text/css", content: css};
+                prez.files[name + '.html'] = {type: "text/html", content: html};
+                return $http.post( url, prez)
+                    .then(function (response){
+                        if( response.status == 200){
+                            return Common.gistToprez(response.data);
+                        }else{
+                            $rootScope.error = {
+                                                title:$rootScope.messages['error.github'],
+                                                message:$rootScope.messages['error.case'] + response.data.data.message
+                                               };
+                            $location.path('/error');
+                        }
+                    });
             }
         }
     });
@@ -133,8 +157,10 @@ angular.module('play', [ ])
                         if( response.status == 200 ){
                             return response.data;
                         }else{
-                        	$rootScope.error.title = "Error when retriving I18N messages.";
-                        	$rootScope.error.cause = i18n('error.case') + "Http code (" + url + ") : " + response.status;
+                            $rootScope.error = {
+                                                    title:"Error when retriving I18N messages.",
+                                                    message:$rootScope.messages['error.case'] + "Http code (" + url + ") : " + response.status
+                                               };
                             $location.path('/error');
                         }
                     });
@@ -145,8 +171,10 @@ angular.module('play', [ ])
                     if( response.status == 200 ){
                         return response.data.replace(/"/g, '');
                     }else{
-                        $rootScope.error.title = "Error when retriving token.";
-                        $rootScope.error.cause = i18n('error.case') + "Http code (" + url + ") : " + response.status;
+                        $rootScope.error = {
+                                                title:"Error when retriving token.",
+                                                message:$rootScope.messages['error.case'] + "Http code (" + url + ") : " + response.status
+                                           };
                         $location.path('/error');
                     }
                 });
@@ -165,14 +193,18 @@ angular.module('play', [ ])
                     if( status == 200 ){
                         return SUCCESS;
                     }else{
-                        $rootScope.error.title = "Error when retriving token.";
-                        $rootScope.error.cause = i18n('error.case') + "Http code (" + url + ") : " + response.status;
+                        $rootScope.error = {
+                                                title:"Error when retriving token.",
+                                                message:$rootScope.messages['error.case'] + "Http code (" + url + ") : " + response.status
+                                           };
                         $location.path('/error');
                     }
                 })
                 .error(function(data, status, headers, config) {
-                    $rootScope.error.title = i18n('error.sendMail');
-                    $rootScope.error.cause = i18n('error.case') + "Http code (" + url + ") : " + status;
+                    $rootScope.error = {
+                                            title:$rootScope.messages['error.sendMail'],
+                                            message:$rootScope.messages['error.case'] + "Http code (" + url + ") : " + response.status
+                                       };
                     $location.path('/error');
                 })
             },
@@ -185,8 +217,10 @@ angular.module('play', [ ])
                         template.replace(/__description__/g, description);
                         return template;
                     }else{
-                        $rootScope.error.title = "Error when retriving token.";
-                        $rootScope.error.cause = i18n('error.case') + "Http code (" + url + ") : " + response.status;
+                        $rootScope.error = {
+                                                title:"Error when retriving token.",
+                                                message:$rootScope.messages['error.case'] + "Http code (" + url + ") : " + response.status
+                                           };
                         $location.path('/error');
                     }
                 });

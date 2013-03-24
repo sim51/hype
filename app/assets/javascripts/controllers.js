@@ -54,10 +54,14 @@ var PrezEditCtrl = ['$scope', '$routeParams', '$timeout', 'Github', 'Common', fu
     var id = $routeParams.id;
     Github.get(id).then(function(data){
        $scope.css = data['css'];
-       $scope.prez = data['html'];
+       $scope.html = data['html'];
+       $scope.name = data['name'];
     });
-    $scope.$watch('css + prez', function(newValue, oldValue){
+    // watching change on css + html to update preview
+    $scope.$watch('css + html', function(newValue, oldValue){
         if (newValue != oldValue) {
+            // little trick to avoid multiple update.
+            // We only take the last one by canceled previous
             if($scope.timeout != 'undefined') {
                 console.log('cancel timeout');
                 $timeout.cancel($scope.timeout);
@@ -65,7 +69,7 @@ var PrezEditCtrl = ['$scope', '$routeParams', '$timeout', 'Github', 'Common', fu
             }
             $scope.timeout = $timeout(function(){
                 console.log("change !!!");
-                var code = $scope.prez;
+                var code = $scope.html;
                 code = Common.insertInnerCSS( code, $scope.css);
                 var ifrm = document.getElementById('preview');
                 var currentSlideIndice = {h:0, v:0};
@@ -77,8 +81,23 @@ var PrezEditCtrl = ['$scope', '$routeParams', '$timeout', 'Github', 'Common', fu
                 ifrm.document.open();
                 ifrm.document.write(code);
                 ifrm.document.close();
-                ifrm.Reveal.slide(currentSlideIndice.h, currentSlideIndice.v);
+                // Goto current slide
+                if(ifrm.Reveal){
+                    ifrm.Reveal.slide(currentSlideIndice.h, currentSlideIndice.v);
+                }
             }, 1000);
         }
     });
+    // enable ctrl+s to save the work !
+    document.addEventListener("keydown", function(e) {
+        if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+            e.preventDefault();
+            Github.save(id, $scope.name, $scope.html, $scope.css ).then(function(){
+                $scope.success = true;
+                $timeout(function(){
+                    $scope.success = false;
+                }, 5000)
+            });
+        }
+    }, false);
 }];

@@ -3,7 +3,7 @@
 application.name=Hype
 application.baseline=Html yoda presentation experience
 footer.text=<p>Ce projet est sous la <a href="http://www.gnu.org/licenses/gpl.html" title="Licence GPL" target="_blank">GNU General Public Licence (GPL)</a>. Les sources sont hebergees sur <a href="https://github.com/sim51/csvmap" target="_blank">github</a>.<br>&copy; <a href="http://www.bsimard.com">Benoit SImard</a></p>
-search=Rechercher
+common.search=Rechercher
 common.previous=Precedent
 common.next=Suivant
 common.page=Page n°
@@ -12,7 +12,7 @@ common.page=Page n°
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 page.home=Home
 page.home.title=Html yoda presentation experience
-page.home.text=<p>A tools to help you to built HTML presentation with impress.js or reveal.js. You're presentation will be save on your github account as a gist. So your presentation is versioned !</p><p><a class="btn btn-primary btn-large" href="/authenticate/github">Login with Github</a></p>
+page.home.text=<p>A tools to help you to built HTML presentation with impress.js or reveal.js. You're presentation will be save on your github account as a gist. So your presentation is versioned !</p><p><a class="btn btn-primary btn-large" href="/login">Login with Github</a></p>
 page.home.col1.title=Presentation
 page.home.col1.text=<p>Texte of presentation</p>
 page.home.col2.title=Technique stack
@@ -64,7 +64,8 @@ error.sendmail=An error occured when email was send
 warning.sendmail=You have 10 minutes to fulfil the form :
 success.sendmail=Done ! An email has been sent.
 # create prez
-success.createprez=Done ! You're presentation is created.
+success.createprez=Done ! Your presentation is created.
+success.save=Done! your presentation is created. 
 error.github=An error occured with github API
 
 # SECURE SOCIAL

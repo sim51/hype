@@ -1,6 +1,12 @@
+<div id="save"  class="alert alert-success" ng-show="success">
+    <button type="button" class="close" ng-click="success=false">&times;</button>
+    <h4>{{'success'|i18n}}</h4>
+    {{'success.save'|i18n}}
+</div>
+
 <div id="colLeft">
     <div class="codeArea">
-        <textarea ui-codemirror="{theme:'monokai', mode:'text/html', tabMode: 'indent', autoCloseBrackets: true, autoCloseTags: true, lineWrapping: true}" ng-model="prez"></textarea>
+        <textarea ui-codemirror="{theme:'monokai', mode:'text/html', tabMode: 'indent', autoCloseBrackets: true, autoCloseTags: true, lineWrapping: true}" ng-model="html"></textarea>
     </div>
     <div class="codeArea">
         <textarea ui-codemirror="{theme:'monokai', tabMode: 'indent', mode:'css', autoCloseBrackets: true, lineWrapping: true}" ng-model="css"></textarea>
