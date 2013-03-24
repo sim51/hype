@@ -50,7 +50,7 @@
                                     </li>
                                 }
                                 case None => {
-                                    <li><a href="@securesocial.controllers.routes.LoginPage.login()">Login</a></li>
+                                    <li><a href='@securesocial.controllers.routes.ProviderController.authenticate("github")'>Login</a></li>
                                 }
                             }
                         </ul>

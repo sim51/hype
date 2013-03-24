@@ -140,7 +140,9 @@ object Application extends Controller with securesocial.core.SecureSocial {
    */
   def view(id:String, filename:String) = Action { implicit request =>
     Async {
-      WS.url("https://gist.github.com/raw/" + id + "/" + filename).get().map { response =>
+      val url = "https://gist.github.com/raw/" + id + "/" + java.net.URLEncoder.encode(filename  + ".html", "UTF-8").replace("+", "%20")
+      Logger.debug("Calling " + url)
+      WS.url(url).get().map { response =>
         if (response.status == 200){
           Ok(views.html.prez.see(response.body.replace("<!-- ###HYPE_INJECTION_CODE### -->", "")))
         }
@@ -159,7 +161,9 @@ object Application extends Controller with securesocial.core.SecureSocial {
    */
   def see(id:String, filename:String) = Action { implicit request =>
     Async {
-      WS.url("https://gist.github.com/raw/" + id + "/" + filename).get().map { response =>
+      val url = "https://gist.github.com/raw/" + id + "/" + java.net.URLEncoder.encode(filename  + ".html", "UTF-8").replace("+", "%20")
+      Logger.debug("Calling " + url)
+      WS.url(url).get().map { response =>
         if (response.status == 200){
           val is = Application.getClass().getResourceAsStream("/public/template/revealjs/ws-see.js")
           val src = Source.fromInputStream(is)
@@ -183,7 +187,9 @@ object Application extends Controller with securesocial.core.SecureSocial {
   def run(id:String, filename:String) = SecuredAction { implicit request =>
     if(isGistOwner(id, request.user)) {
       Async {
-        WS.url("https://gist.github.com/raw/" + id + "/" + filename).get().map { response =>
+        val url = "https://gist.github.com/raw/" + id + "/" + java.net.URLEncoder.encode(filename + ".html", "UTF-8").replace("+", "%20")
+        Logger.debug("Calling " + url)
+        WS.url(url).get().map { response =>
           if (response.status == 200){
             val is = Application.getClass().getResourceAsStream("/public/template/revealjs/ws-run.js")
             val src = Source.fromInputStream(is)

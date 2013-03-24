@@ -7,7 +7,7 @@ angular.module('Hype', [])
         SUCCES : 'TRUE'
     })
     .value('Common', {
-        gistToprez : function(gist){
+        gistToprez: function(gist){
             var prezName = Object.keys(gist.files)[0].replace(/(.html|.css)/g,'');
             return {
                  id: gist.id,
@@ -16,9 +16,23 @@ angular.module('Hype', [])
                  description: gist.description.replace(/#hype/g, '').replace(/\n/g, "<br/>"),
                  updated: gist.updated_at,
                  created: gist.created_at,
-                 githuburl : gist.html_url,
-                 rawurl : gist.files[prezName + '.html'].raw_url
+                 githuburl: gist.html_url,
+                 rawurl: gist.files[prezName + '.html'].raw_url
             }
+        },
+        insertInnerCSS: function(html, css){
+            var text = '<style>\n' + css + '\n</style>';
+            var pattern = '<!-- ###HYPE_INJECTION_CODE### -->';
+            return html.replace(pattern, text);
+        },
+        insertCSSFile: function(html, url){
+            var text = '<link rel=\"stylesheet\" href=\"" + url + "\">';
+            var pattern = '<!-- ###HYPE_CSS### -->';
+            return html.replace(pattern, text);
+        },
+        removeCSSFile: function(html, url){
+            var regex = "/<link rel=\"stylesheet\" href=\"" + url + "\">/g";
+            return html.replace(regex, '');
         }
     });
 
@@ -61,17 +75,18 @@ angular.module('github', ['Hype' ])
                             var gist = response.data.data;
                             var el = document.createElement( 'div' );
                             // construct the map
-
+                            var cssurl ='';
                             for ( var i=0; i< Object.keys(gist.files).length; i++ ){
                                 var key = Object.keys(gist.files)[i];
-                                if ( gist.files[key].filename.endsWith('.html') ){
+                                if ( gist.files[key].filename.indexOf('.html') == (gist.files[key].filename.length -5)){
                                     map['html'] = gist.files[key].content;
                                 }
-                                if ( gist.files[key].filename.endsWith('.css') ){
+                                if ( gist.files[key].filename.indexOf('.css') == (gist.files[key].filename.length -4) ){
                                     map['css'] = gist.files[key].content;
+                                    cssurl = gist.files[key].raw_url;
                                 }
-
                             }
+                            map['html'] = Common.removeCSSFile(map['html'], cssurl);
                             return map;
                         }else{
                         	$rootScope.error.title = i18n('error.github');
@@ -94,13 +109,16 @@ angular.module('github', ['Hype' ])
                 return $http.post( url, prez)
                     .then(function (response){
                         if( response.status == 201){
-                            return gistToprez(response.data);
+                            return Common.gistToprez(response.data);
                         }else{
                         	$rootScope.error.title = i18n('error.github');
                             $rootScope.error.cause = i18n('error.case') + response.data.data.message;
                             $location.path('/error');
                         }
                     });   
+            },
+            save: function(){
+
             }
         }
     });

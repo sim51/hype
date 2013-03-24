@@ -50,7 +50,7 @@ var ProfileCtrl = ['$scope', 'Github', 'Play', function ($scope, Github, Play) {
     }
 }];
 
-var PrezEditCtrl = ['$scope', '$routeParams', '$timeout', 'Github', function ($scope, $routeParams, $timeout, Github) {
+var PrezEditCtrl = ['$scope', '$routeParams', '$timeout', 'Github', 'Common', function ($scope, $routeParams, $timeout, Github, Common) {
     var id = $routeParams.id;
     Github.get(id).then(function(data){
        $scope.css = data['css'];
@@ -65,12 +65,20 @@ var PrezEditCtrl = ['$scope', '$routeParams', '$timeout', 'Github', function ($s
             }
             $scope.timeout = $timeout(function(){
                 console.log("change !!!");
+                var code = $scope.prez;
+                code = Common.insertInnerCSS( code, $scope.css);
                 var ifrm = document.getElementById('preview');
+                var currentSlideIndice = {h:0, v:0};
+                if(ifrm.contentWindow && ifrm.contentWindow.Reveal){
+                    currentSlideIndice = ifrm.contentWindow.Reveal.getIndices();
+                }
+                console.log('current slide is ' + currentSlideIndice.h + ' ' + currentSlideIndice.v);
                 ifrm = (ifrm.contentWindow) ? ifrm.contentWindow : (ifrm.contentDocument.document) ? ifrm.contentDocument.document : ifrm.contentDocument;
                 ifrm.document.open();
-                ifrm.document.write($scope.prez);
+                ifrm.document.write(code);
                 ifrm.document.close();
-            }, 1000);
+                ifrm.contentWindow.Reveal.slide(currentSlideIndice.h, currentSlideIndice.v);
+            }, 2000);
         }
-    })
+    });
 }];

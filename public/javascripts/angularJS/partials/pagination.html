@@ -44,9 +44,9 @@
                 <td>{{item.updated|date}}</td>
                 <td class="action">
                     <a ng-click="edit(item.id)" target="_blank" title="{{'prez.action.edit'|i18n}}"><i class="icon-pencil"></i></a>
-                    <a href="/prez/view/{{item.id}}/{{item.name}}" target="_blank" title="{{'prez.action.view'|i18n}}"><i class="icon-eye-open"></i></i></a>
-                    <a href="/prez/run/{{item.id}}/{{item.name}}" target="_blank" title="{{'prez.action.run'|i18n}}"><i class="icon-play"></i></i></a>
-                    <a href="/prez/see/{{item.id}}/{{item.name}}" target="_blank" title="{{'prez.action.see'|i18n}}"><i class="icon-eye-close"></i></i></a>
+                    <a href="/prez/view/{{item.id}}/{{item.name|urlEncode}}" target="_blank" title="{{'prez.action.view'|i18n}}"><i class="icon-eye-open"></i></i></a>
+                    <a href="/prez/run/{{item.id}}/{{item.name|urlEncode}}" target="_blank" title="{{'prez.action.run'|i18n}}"><i class="icon-play"></i></i></a>
+                    <a href="/prez/see/{{item.id}}/{{item.name|urlEncode}}" target="_blank" title="{{'prez.action.see'|i18n}}"><i class="icon-eye-close"></i></i></a>
                     <a href="{{item.githuburl}}" target="_blank" title="{{'prez.action.github'|i18n}}"><i class="icon-github"></i></a>
                 </td>
             </tr>
