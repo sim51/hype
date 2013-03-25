@@ -9,7 +9,11 @@ function ErrorCtrl() {
 /**
  *	Home controller : let's display some welcome text & explanation !
  */
-function HomeCtrl() {};
+var HomeCtrl = ['$rootScope', '$location', function HomeCtrl($rootScope, $location) {
+    if($rootScope.isConnected){
+        $location.path("/profile");
+    }
+}];
 
 /**
  *	Contact controller : do you want to contact me ?

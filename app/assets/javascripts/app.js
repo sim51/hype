@@ -29,7 +29,5 @@ app.run(function($rootScope, $cookieStore, $cookies, $location, Play){
         $rootScope.isConnected=true;
         $rootScope.token=$cookieStore.get('token').replace(/"/g,'');
         console.log("[MAIN] user is authenticate with token: " + $rootScope.token);
-        // we redirect the user to its page
-        // $location.path("/profile");
     }
 });
