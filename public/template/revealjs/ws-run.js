@@ -1,7 +1,7 @@
 var WS = window['MozWebSocket'] ? MozWebSocket : WebSocket;
 var domain = '###DOMAIN###';
 var socket = new WS("ws://" + domain + "/prez/ws?id=###ID###");
-var sendMessage = function(txt) {
+var sendSlide = function(txt) {
     console.log("[WS]: sending " + txt + " | " + JSON.stringify(txt))
     socket.send(JSON.stringify(txt));
 }
@@ -10,9 +10,20 @@ var receiveEvent = function(event) {
     console.log("[WS]: receiving " + event.data)
 }
 socket.onmessage = receiveEvent;
+socket.onclose = function(event) {
+    alert("[WS]: Close " + event);
+}
+socket.onerror = function(event) {
+    alert("[WS]: Error " + event);
+}
 
 Reveal.addEventListener( 'slidechanged', function( event ) {
     console.log("[EventListerner]: h=>"+ event.indexh + " v=>" + event.indexv);
-    var json = {h:event.indexh, v:event.indexv}
-    sendMessage(json);
+    var json = {event:"ping", h:event.indexh, v:event.indexv}
+    sendSlide(json);
 } );
+
+
+var keepALive = function(){
+    socket.send(JSON.stringity({event:'ping'}));
+}

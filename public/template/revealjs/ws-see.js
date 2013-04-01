@@ -11,6 +11,12 @@ var receiveEvent = function(event) {
     }
 }
 socket.onmessage = receiveEvent;
+socket.onclose = function(event) {
+    alert("[WS]: Close " + event);
+}
+socket.onerror = function(event) {
+    alert("[WS]: Error " + event);
+}
 
 // Reveal read-only mode
 Reveal.configure({mouseWheel:false});

@@ -22,6 +22,7 @@ import scala.concurrent.duration._
 
 /**
  * Application's controllers.
+ *
  * @author bsimard
  */
 object Application extends Controller with securesocial.core.SecureSocial {
@@ -215,14 +216,20 @@ object Application extends Controller with securesocial.core.SecureSocial {
   val (controlsStream, controlsChannel) = Concurrent.broadcast[JsValue]
   def ws(id:String) = WebSocket.using[JsValue] { request =>
     val in = Iteratee.foreach[JsValue] { msg =>
-      val h:JsValue =  msg.\("h")
-      val v:JsValue =  msg.\("v")
-      Logger.debug(msg.toString())
-      SecureSocial.currentUser(request) match {
-        case Some(user) => {
-          if(isGistOwner(id, user)) {
-            Logger.debug("message will be sending")
-            controlsChannel.push(JsObject(Seq("id"->JsString(id), "h"->h, "v"->v)))
+      val event:JsValue = msg.\("event")
+      if (event.toString() != "ping") {
+        val h:JsValue =  msg.\("h")
+        val v:JsValue =  msg.\("v")
+        Logger.debug(msg.toString())
+        SecureSocial.currentUser(request) match {
+          case Some(user) => {
+            if(isGistOwner(id, user)) {
+              Logger.debug("message will be sending")
+              controlsChannel.push(JsObject(Seq("id"->JsString(id), "h"->h, "v"->v)))
+            }
+            else{
+              Logger.debug("message will NOT be sending")
+            }
           }
         }
       }
