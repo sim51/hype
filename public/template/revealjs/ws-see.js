@@ -12,11 +12,16 @@ var receiveEvent = function(event) {
 }
 socket.onmessage = receiveEvent;
 socket.onclose = function(event) {
-    alert("[WS]: Close " + event);
+    //alert("[WS]: Close " + event);
 }
 socket.onerror = function(event) {
-    alert("[WS]: Error " + event);
+    //alert("[WS]: Error " + event);
 }
+var keepALive = function(){
+    console.log("[WS]: sending keep a live");
+    socket.send(JSON.stringify({event:'ping'}));
+}
+window.setInterval(keepALive, 15000)
 
 // Reveal read-only mode
 Reveal.configure({mouseWheel:false});
@@ -24,6 +29,7 @@ Reveal.configure({controls:false});
 Reveal.configure({keyboard:false});
 Reveal.removeEventListeners();
 Reveal.addEventListeners();
+
 
 
 

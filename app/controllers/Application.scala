@@ -217,7 +217,8 @@ object Application extends Controller with securesocial.core.SecureSocial {
   def ws(id:String) = WebSocket.using[JsValue] { request =>
     val in = Iteratee.foreach[JsValue] { msg =>
       val event:JsValue = msg.\("event")
-      if (event.toString() != "ping") {
+      Logger.debug("message type is " + event.as[String])
+      if (event.as[String] != "ping") {
         val h:JsValue =  msg.\("h")
         val v:JsValue =  msg.\("v")
         Logger.debug(msg.toString())

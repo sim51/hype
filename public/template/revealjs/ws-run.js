@@ -11,10 +11,10 @@ var receiveEvent = function(event) {
 }
 socket.onmessage = receiveEvent;
 socket.onclose = function(event) {
-    alert("[WS]: Close " + event);
+    //alert("[WS]: Close " + event);
 }
 socket.onerror = function(event) {
-    alert("[WS]: Error " + event);
+    //alert("[WS]: Error " + event);
 }
 
 Reveal.addEventListener( 'slidechanged', function( event ) {
@@ -25,5 +25,7 @@ Reveal.addEventListener( 'slidechanged', function( event ) {
 
 
 var keepALive = function(){
-    socket.send(JSON.stringity({event:'ping'}));
+    console.log("[WS]: sending keep a live");
+    socket.send(JSON.stringify({event:'ping'}));
 }
+window.setInterval(keepALive, 15000)
