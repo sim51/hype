@@ -6,7 +6,8 @@ var app = angular.module('hype', ['ngCookies', 'github', 'play', 'directives', '
 /* Configure the application with the route */
 app.config(function($routeProvider) {
 		$routeProvider
-            .when('/', {templateUrl:'/assets/javascripts/angularJS/partials/home.html', controller: HomeCtrl})
+            .when('/', {templateUrl:'/assets/javascripts/angularJS/partials/home.html', controller: IndexCtrl})
+            .when('/home', {templateUrl:'/assets/javascripts/angularJS/partials/home.html', controller: HomeCtrl})
             .when('/contact', {templateUrl:'/assets/javascripts/angularJS/partials/contact.html', controller: ContactCtrl})
             .when('/profile', {templateUrl:'/assets/javascripts/angularJS/partials/profile.html', controller: ProfileCtrl})
             .when('/prez/:id', {templateUrl:'/assets/javascripts/angularJS/partials/edit.html', controller: PrezEditCtrl})

@@ -7,7 +7,13 @@ function ErrorCtrl() {
 };
 
 /**
- *	Home controller : let's display some welcome text & explanation !
+ *	Index controller : let's display some welcome text & explanation !
+ */
+function IndexCtrl(){
+};
+
+/**
+ *	Home controller : let's display some welcome text & explanation for anonymous, or profile page for user
  */
 var HomeCtrl = ['$rootScope', '$location', function HomeCtrl($rootScope, $location) {
     if($rootScope.isConnected){
