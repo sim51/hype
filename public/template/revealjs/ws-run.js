@@ -19,7 +19,7 @@ socket.onerror = function(event) {
 
 Reveal.addEventListener( 'slidechanged', function( event ) {
     console.log("[EventListerner]: h=>"+ event.indexh + " v=>" + event.indexv);
-    var json = {event:"ping", h:event.indexh, v:event.indexv}
+    var json = {event:"slide", h:event.indexh, v:event.indexv}
     sendSlide(json);
 } );
 
