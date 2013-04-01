@@ -38,11 +38,11 @@ object UserAccount {
       SQL(
         """
           SELECT
-            userAccount.json
+            userAccount.*
           FROM
             userAccount
           WHERE
-            userAccount.user_id={user_id} AND
+            userAccount.user_id={id} AND
             userAccount.provider={provider}
         """
       ).on(

@@ -2,7 +2,7 @@ package models
 
 import play.api.db._
 import play.api.Play.current
-
+import play.api.{Logger, Application}
 import anorm._
 import anorm.SqlParser._
 import scala.Option
@@ -15,6 +15,7 @@ import play.api.libs.json.JsObject
 import play.api.libs.json.JsString
 import scala.Some
 import play.api.Play.current
+import util.parsing.json.JSONObject
 
 /**
  * User class.
@@ -35,7 +36,7 @@ object User {
     get[String]("user.lastname") ~
     get[String]("user.fullname") ~
     get[Option[String]]("user.email") ~
-    get[Option[String]]("user.avatrUrl") map {
+    get[Option[String]]("user.avatarUrl") map {
       case id~firstname~lastname~fullname~email~avatarUrl => User(id, firstname, lastname, fullname, email, avatarUrl)
     }
   }
@@ -144,7 +145,8 @@ object User {
       case Some(account) => {
         account.json match {
           case Some(json) => {
-            val token: String = (json  \ "tokenAccess").as[String]
+            Logger.debug("JSON is " + json.as[JsObject].\("accesToken").as[String])
+            val token: String = json.as[JsObject].\("accesToken").as[String]
             new SocialUser( UserId(account.id, account.provider), user.firstname, user.lastname, user.fullname, user.email, user.avatarUrl, core.AuthenticationMethod.OAuth2, None, Some(OAuth2Info(token)), None )
           }
           case None => new SocialUser( UserId("", ""), user.firstname, user.lastname, user.fullname, user.email, user.avatarUrl, core.AuthenticationMethod.OAuth2, None, None, None )

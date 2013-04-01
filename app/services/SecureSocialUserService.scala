@@ -39,9 +39,13 @@ class SecureSocialUserService(application: Application) extends UserServicePlugi
   def find(id: UserId): Option[Identity] = {
     User.findFromIdentityId(id) match {
       case Some(user) => {
+        Logger.debug("Find user = %s".format(user))
         Some(User.toIdentity(user))
       }
-      case None => {None}
+      case None => {
+          Logger.debug("No user found !")
+          None
+      }
     }
   }
 
@@ -66,7 +70,7 @@ class SecureSocialUserService(application: Application) extends UserServicePlugi
    * @param user
    */
   def save(user: Identity): Identity = {
-    Logger.debug("user = %s".format(user))
+    Logger.debug("Saving user = %s".format(user))
     User.createFromIdentity(user)
     // return
     user
