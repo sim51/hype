@@ -2,7 +2,7 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 application.name=Hype
 application.baseline=Html yoda presentation experience
-footer.text=<p>Ce projet est sous la <a href="http://www.gnu.org/licenses/gpl.html" title="Licence GPL" target="_blank">GNU General Public Licence (GPL)</a>. Les sources sont hebergees sur <a href="https://github.com/sim51/hype" target="_blank">github</a>.<br>&copy; <a href="http://www.bsimard.com">Benoit SImard</a></p>
+    footer.text=<p>Ce projet est sous la <a href="http://www.gnu.org/licenses/gpl.html" title="Licence GPL" target="_blank">GNU General Public Licence (GPL)</a>. Les sources sont hebergees sur <a href="https://github.com/sim51/hype" target="_blank">github</a>.<br>&copy; <a href="http://www.bsimard.com">Benoit SImard</a></p>
 common.search=Rechercher
 common.previous=Précédent
 common.next=Suivant
@@ -63,7 +63,7 @@ warning=Attention
 error.cause=La raison est :
 # sending email
 error.sendmail=Une erreur est survenue lors de l'envoie de l'email
-warning.sendmail=Vous avez 10 minutes pour remplir le remplir :
+warning.sendmail=Vous avez 10 minutes pour remplir le formulaire :
 success.sendmail=Votre demande de contact a été envoyé.
 # create prez
 success.createprez=Votre présentation vient d'être créé.
