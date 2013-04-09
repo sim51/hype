@@ -12,3 +12,6 @@ dist
 /.classpath
 /.project
 /RUNNING_PID
+hype.h2.db
+hype.lock.db
+hype.trace.db
