@@ -76,11 +76,10 @@ html {
       background-color: #FFFFFF;
       border-radius: 0 0 6px 6px;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-      margin: -20px auto 20px;
-      padding: 20px;
-      padding-left: 0;
-      padding-right: 0;
-      height: 100%;
+      margin: -20px auto 0px;
+      padding: 0;
+      padding-top: 20px;
+      height: 95%;
       overflow-y: auto;
 
       #innercontent {
@@ -90,6 +89,11 @@ html {
         .hero-unit {
           background-color: @colorBackground;
         }
+
+        td.action a {
+          text-decoration: none;
+        }
+
       }
 
       > div {
@@ -107,7 +111,7 @@ html {
 
       div#colLeft {
         width: 50%;
-        height: 95%;
+        height: 99%;
         float: left;
         .codeArea {
           height: 50%;
@@ -121,7 +125,7 @@ html {
 
       div#colRight {
         width: 50%;
-        height: 95%;
+        height: 99%;
         float: right;
 
         iframe {
@@ -144,6 +148,7 @@ html {
         color: @colorLight;
         border-radius: 6px 6px 6px 6px;
         padding: 10px;
+        margin-bottom: 20px;
 
         img {
           width: 80%;
