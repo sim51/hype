@@ -15,10 +15,10 @@ common.logout=Logout
 page.home=Home
 page.home.title=Html yoda presentation experience
 page.home.text=<p>A tools to help you to built HTML presentation with impress.js or reveal.js. Your presentation will be saved on your github account as a gist. So, it's versioned !</p><p><a class="btn btn-primary btn-large" href="/authenticate/github">Login with Github</a></p>
-page.home.col1.title=Presentation
-page.home.col1.text=<p>Texte of presentation</p>
+page.home.col1.title=Your workspace
+page.home.col1.text=<div class\="row-fluid"><p>Create and update your presentation directly online with the JSFiddle like workspace</p><p>On the left, you have the HTML & CSS code and on the other side, the preview of your code \!<br/>This preview is make in realtime, no need to refresh the page or to clic k on a 'run' button</p><p>To save your modification, simply press "CTRL + S" as usual (if there are some feedback, I will implement a VIM editor \!)</p></div><br/><div class\="row-fluid"><img src\="/assets/images/workspace.png" /></div>
 page.home.col2.title=Technique stack
-page.home.col2.text=<ul><li><a href="http://www.playframework.com" title="Play! framework">Play! framework 2.1</a> for I18N, Authentification, API  & Websocket</li><li><a href="http://www.angularjs.org" title="angular.js">angularJS</a> : to code the client side application !</li></ul>
+page.home.col2.text=<div class\="row-fluid"><div class\="span4"><img src\="/assets/images/angular.jpeg" /><a href\="http\://www.angularjs.org" title\="angular.js">AngularJS</a> is used for all the front-end interface (single page application), so as for ajax call to Github's API.</div><div class\="span4"><img src\="/assets/images/play.png" /><a href\="http\://www.playframework.com" title\="Play\! framework">Play\! framework 2.1</a> deliver all file and it's use for i18n, authentification and websocket.</div><div class\="span4"><img src\="/assets/images/github.png" /><a href\="http\://github.com">Github</a> is used like a datastore with version. Moreover it's a login service.</div></div>
 
 # PAGE CONTACT
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -52,7 +52,7 @@ prez.created=Created
 prez.action.edit=Work on it
 prez.action.view=View it
 prez.action.run=Start it
-prez.action.readonly=See it
+prez.action.readonly=See it (read only)
 prez.action.github=View it on Github
 
 # ERROR / SUCCESS / WARNING
