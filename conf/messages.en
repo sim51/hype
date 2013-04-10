@@ -2,7 +2,7 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 application.name=Hype
 application.baseline=Html yoda presentation experience
-footer.text=<p>This project is under <a href="http://www.gnu.org/licenses/gpl.html" title="Licence GPL" target="_blank">GNU General Public Licence (GPL)</a>. Source code are on<a href="https://github.com/sim51/hype" target="_blank">Github</a>.<br>&copy; <a href="http://www.bsimard.com">Benoît Simard</a></p>
+footer.text=<p>This project is under <a href="http://www.gnu.org/licenses/gpl.html" title="Licence GPL" target="_blank">GNU General Public Licence (GPL)</a>. Source code are on <a href="https://github.com/sim51/hype" target="_blank">Github</a>.<br>&copy; <a href="http://www.bsimard.com">Benoît Simard</a></p>
 common.search=Search
 common.previous=Previous
 common.next=Next
@@ -14,11 +14,11 @@ common.logout=Logout
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 page.home=Home
 page.home.title=Html yoda presentation experience
-page.home.text=<p>A tools to help you to built HTML presentation with impress.js or reveal.js. Your presentation will be saved on your github account as a gist. So, it's versioned !</p><p><a class="btn btn-primary btn-large" href="/authenticate/github">Login with Github</a></p>
+page.home.text=<p>Hype is an online tool that help you to build yours HTML presentations with Reveal.js</p><p>You can easy create a presentation with a unique step form, and start to work on it with a JSFiddle like workspace.</p><p>Data are yours, they are saved on your Github account as a Gist. And you know what ? Gist are versionned !</p><p>During a presentation, share your slides and take control of it. You are the only person who can navigate into slides ! Or if you want, you can use your smartphone as a remote !</br>All this is possible with the technology of webscoket.</p><br/><p><a class="btn btn-primary btn-large" href="/authenticate/github">Login !</a></p>
 page.home.col1.title=Your workspace
-page.home.col1.text=<div class\="row-fluid"><p>Create and update your presentation directly online with the JSFiddle like workspace</p><p>On the left, you have the HTML & CSS code and on the other side, the preview of your code \!<br/>This preview is make in realtime, no need to refresh the page or to clic k on a 'run' button</p><p>To save your modification, simply press "CTRL + S" as usual (if there are some feedback, I will implement a VIM editor \!)</p></div><br/><div class\="row-fluid"><img src\="/assets/images/workspace.png" /></div>
-page.home.col2.title=Technique stack
-page.home.col2.text=<div class\="row-fluid"><div class\="span4"><img src\="/assets/images/angular.jpeg" /><a href\="http\://www.angularjs.org" title\="angular.js">AngularJS</a> is used for all the front-end interface (single page application), so as for ajax call to Github's API.</div><div class\="span4"><img src\="/assets/images/play.png" /><a href\="http\://www.playframework.com" title\="Play\! framework">Play\! framework 2.1</a> deliver all file and it's use for i18n, authentification and websocket.</div><div class\="span4"><img src\="/assets/images/github.png" /><a href\="http\://github.com">Github</a> is used like a datastore with version. Moreover it's a login service.</div></div>
+page.home.col1.text=<div class="row-fluid"><p>Create and update your presentations directly online with a JSFiddle like workspace</p><p>On the left, you have the HTML & CSS code. On the other side, the preview of your code !<br/>This preview is made in realtime, no need to refresh the page or to click on a 'run' button</p><p>To save your modification, simply press "CTRL + S" as usual (if there are some feedback, I will implement a VIM editor !)</p></div><br/><div class="row-fluid"><img src="/assets/images/workspace.png" /></div>
+page.home.col2.title=Technical stack
+page.home.col2.text=<div class="row-fluid"><div class="span4"><img src="/assets/images/angular.jpeg" /><a href="http://www.angularjs.org" title="angular.js">AngularJS</a> is used for all the front-end interface (single page application), so as for ajax call to Github's API.</div><div class="span4"><img src="/assets/images/play.png" /><a href="http://www.playframework.com" title="Play! framework">Play! framework 2.1</a> deliver all file and it's use for i18n, authentification and websocket.</div><div class="span4"><img src="/assets/images/github.png" /><a href="http://github.com">Github</a> is used like a datastore with version. Moreover it's a login service.</div></div>
 
 # PAGE CONTACT
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
