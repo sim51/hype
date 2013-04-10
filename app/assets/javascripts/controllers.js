@@ -82,23 +82,22 @@ var PrezEditCtrl = ['$scope', '$routeParams', '$timeout', 'Github', 'Common', fu
             }
             $scope.timeout = $timeout(function(){
                 console.log("change !!!");
-                var code = $scope.html;
-                code = Common.insertInnerCSS( code, $scope.css);
+
                 var ifrm = document.getElementById('preview');
                 var currentSlideIndice = {h:0, v:0};
                 if(ifrm.contentWindow && ifrm.contentWindow.Reveal){
                     currentSlideIndice = ifrm.contentWindow.Reveal.getIndices();
                 }
+                var code = $scope.html;
+                code = Common.injectCode( code, $scope.css, 'Reveal.slide(' + currentSlideIndice.h + ',' + currentSlideIndice.v + ')');
+
+
                 console.log('current slide is ' + currentSlideIndice.h + ' ' + currentSlideIndice.v);
                 ifrm = (ifrm.contentWindow) ? ifrm.contentWindow : (ifrm.contentDocument.document) ? ifrm.contentDocument.document : ifrm.contentDocument;
                 ifrm.document.open();
                 ifrm.document.write(code);
                 ifrm.document.close();
-                // Goto current slide
-                if(ifrm.Reveal){
-                    ifrm.Reveal.slide(currentSlideIndice.h, currentSlideIndice.v);
-                }
-            }, 1000);
+            }, 1500);
         }
     });
     // enable ctrl+s to save the work !

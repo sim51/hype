@@ -20,8 +20,9 @@ angular.module('Hype', [])
                  rawurl: gist.files[prezName + '.html'].raw_url
             }
         },
-        insertInnerCSS: function(html, css){
+        injectCode: function(html, css, js){
             var text = '<style>\n' + css + '\n</style>';
+            text += '<script type="text/javascript">' + js + '</script>'
             var pattern = '<!-- ###HYPE_INJECTION_CODE### -->';
             return html.replace(pattern, text);
         },
