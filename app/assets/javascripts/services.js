@@ -43,7 +43,6 @@ angular.module('Hype', [])
                 title: $rootScope.messages['error'],
                 message: cause + ' ' + exception
             };
-            //$location.path('/error');
         };
     });
 
