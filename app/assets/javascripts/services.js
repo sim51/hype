@@ -4,8 +4,7 @@
 angular.module('Hype', [])
     .value('Config', {
         githuburl : 'https://api.github.com',
-        SUCCES : 'TRUE',
-        version : '1.0'
+        SUCCES : 'TRUE'
     })
     .value('Common', {
         gistToprez: function(gist){
@@ -36,14 +35,6 @@ angular.module('Hype', [])
             var regex = "/<link rel=\"stylesheet\" href=\"" + url + "\">/g";
             return html.replace(regex, '');
         }
-    })
-    .factory('$exceptionHandler', function () {
-        return function (exception, cause) {
-            $rootScope.error = {
-                title: $rootScope.messages['error'],
-                message: cause + ' ' + exception
-            };
-        };
     });
 
 angular.module('github', ['Hype' ])
