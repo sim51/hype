@@ -141,7 +141,7 @@ object User {
   }
 
   def toIdentity(user: User): Identity = {
-    val ident: Identity = UserAccount.getByProvider(user, "github") match {
+    UserAccount.getByProvider(user, "github") match {
       case Some(account) => {
         account.json match {
           case Some(json) => {
@@ -154,6 +154,5 @@ object User {
       }
       case None => new SocialUser( UserId("", ""), user.firstname, user.lastname, user.fullname, user.email, user.avatarUrl, core.AuthenticationMethod.OAuth2, None, None, None )
     }
-   ident
   }
 }
