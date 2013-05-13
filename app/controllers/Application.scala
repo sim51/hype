@@ -248,7 +248,7 @@ object Application extends Controller with securesocial.core.SecureSocial {
   def isGistOwner(id:String, user:securesocial.core.Identity): Boolean = {
     val value :Future[Boolean] = user.oAuth2Info match {
       case Some(oAuthInfo2) => {
-        val futureResp: Future[Response] = WS.url("https://api.github.com/gists/" + id + "?token=" + oAuthInfo2.accessToken).get()
+        val futureResp: Future[Response] = WS.url("https://api.github.com/gists/" + id + "?access_token=" + oAuthInfo2.accessToken).get()
         futureResp.map { response =>
           if(response.status == 200){
             val owner = response.json.\("user").\("id")
