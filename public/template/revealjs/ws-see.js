@@ -27,6 +27,7 @@ window.setInterval(keepALive, 15000)
 Reveal.configure({mouseWheel:false});
 Reveal.configure({controls:false});
 Reveal.configure({keyboard:false});
+Reveal.configure({touch:false});
 Reveal.removeEventListeners();
 Reveal.addEventListeners();
 
