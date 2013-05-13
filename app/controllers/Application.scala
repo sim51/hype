@@ -259,7 +259,7 @@ object Application extends Controller with securesocial.core.SecureSocial {
               true
             }
             else{
-              Logger.debug("isGistOwner is false")
+              Logger.debug("isGistOwner is false owner is " + owner + " and you are " + user.id.id)
               false
             }
           }
