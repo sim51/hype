@@ -23,9 +23,10 @@ Reveal.addEventListener( 'slidechanged', function( event ) {
     sendSlide(json);
 } );
 
-
 var keepALive = function(){
     console.log("[WS]: sending keep a live");
     socket.send(JSON.stringify({event:'ping'}));
 }
 window.setInterval(keepALive, 15000)
+
+Reveal.configure({history:true});
