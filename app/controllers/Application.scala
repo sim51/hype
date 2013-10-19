@@ -16,9 +16,10 @@ import scala.Some
 import io.Source
 import play.api.libs.iteratee.{Concurrent, Iteratee}
 import play.api.libs.concurrent.Execution.Implicits._
-import securesocial.core.SecureSocial
 import concurrent.{Await, Future}
 import scala.concurrent.duration._
+
+import securesocial.core.SecureSocial
 
 /**
  * Application's controllers.
@@ -102,8 +103,8 @@ object Application extends Controller with securesocial.core.SecureSocial {
               case Some(uuid) => {
                 val mail = use[MailerPlugin].email
                 mail.setSubject(subject)
-                mail.addRecipient(to)
-                mail.addFrom(name + "<" + email + ">")
+                mail.setReplyTo(to)
+                mail.setFrom(name + "<" + email + ">")
                 //sends text/text
                 mail.send(message)
                 Ok("")
@@ -253,13 +254,13 @@ object Application extends Controller with securesocial.core.SecureSocial {
           if(response.status == 200){
             val owner = response.json.\("user").\("id")
             Logger.debug("Owner of the gist is " + owner)
-            Logger.debug("Current user is " + user.id.id)
-            if(owner.toString() == user.id.id.toString()){
+            Logger.debug("Current user is " + user.identityId.userId)
+            if(owner.toString() == user.identityId.userId.toString()){
               Logger.debug("isGistOwner is true")
               true
             }
             else{
-              Logger.debug("isGistOwner is false owner is " + owner + " and you are " + user.id.id)
+              Logger.debug("isGistOwner is false owner is " + owner + " and you are " + user.identityId.userId)
               false
             }
           }

@@ -16,10 +16,10 @@
  */
 package services
 
-import play.api.{Logger, Application}
+import play.api.{Application, Logger}
 import securesocial.core._
 import securesocial.core.providers.Token
-import securesocial.core.UserId
+import securesocial.core.IdentityId
 import play.api.cache.Cache
 import play.api.Play.current
 import models.User
@@ -36,15 +36,15 @@ class SecureSocialUserService(application: Application) extends UserServicePlugi
    * @param id the user id
    * @return an optional user
    */
-  def find(id: UserId): Option[Identity] = {
+  def find(id: IdentityId): Option[Identity] = {
     User.findFromIdentityId(id) match {
       case Some(user) => {
         Logger.debug("Find user = %s".format(user))
         Some(User.toIdentity(user))
       }
       case None => {
-          Logger.debug("No user found !")
-          None
+        Logger.debug("No user found !")
+        None
       }
     }
   }
@@ -89,14 +89,14 @@ class SecureSocialUserService(application: Application) extends UserServicePlugi
   def save(token: Token) {}
 
   /**
-  * Finds a token
-  *
-  * Note: If you do not plan to use the UsernamePassword provider just provide en empty
-  * implementation
-  *
-  * @param token the token id
-  * @return
-  */
+   * Finds a token
+   *
+   * Note: If you do not plan to use the UsernamePassword provider just provide en empty
+   * implementation
+   *
+   * @param token the token id
+   * @return
+   */
   def findToken(token: String): Option[Token] = {
     None
   }
